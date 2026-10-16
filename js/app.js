@@ -13,14 +13,14 @@ var NAV = [
 
 /* the price list, exactly as published — price is per night */
 var APARTMENTS = [
-  { id:"divine",   name:"Divine",    rate:73500, shot:"Shot 02" },
-  { id:"heritage", name:"Heritage",  rate:73500, shot:"Shot 03" },
-  { id:"electrum", name:"Electrum",  rate:73500, shot:"Shot 05b" },
-  { id:"sunset",   name:"Sunset",    rate:73500, shot:"Shot 04" },
-  { id:"love",     name:"Love",      rate:84000, shot:"Shot 05" },
-  { id:"square",   name:"Square",    rate:84000, shot:"Shot 03c" },
-  { id:"apex",     name:"Apex",      rate:105000, shot:"Shot 05c" },
-  { id:"cityview", name:"City View", rate:126000, shot:"Shot 04b" }
+  { id:"divine",   name:"Divine",    rate:73500, shot:"Shot 02", shots:["Shot 02","Shot 02b","Shot 02c"] },
+  { id:"heritage", name:"Heritage",  rate:73500, shot:"Shot 03", shots:["Shot 03","Shot 03b","Shot 03c"] },
+  { id:"electrum", name:"Electrum",  rate:73500, shot:"Shot 05b", shots:["Shot 05b","Shot 05","Shot 05c"] },
+  { id:"sunset",   name:"Sunset",    rate:73500, shot:"Shot 04", shots:["Shot 04","Shot 04b","Shot 04c"] },
+  { id:"love",     name:"Love",      rate:84000, shot:"Shot 05", shots:["Shot 05","Shot 05b","Shot 02b"] },
+  { id:"square",   name:"Square",    rate:84000, shot:"Shot 03c", shots:["Shot 03c","Shot 03","Shot 03b"] },
+  { id:"apex",     name:"Apex",      rate:105000, shot:"Shot 05c", shots:["Shot 05c","Shot 05","Shot 05b"] },
+  { id:"cityview", name:"City View", rate:126000, shot:"Shot 04b", shots:["Shot 04b","Shot 04","Shot 04c"] }
 ];
 
 var FAQ = [
@@ -197,6 +197,20 @@ function contactCards(){
     '<p class="small">'+c[2]+'</p></article>'; }).join("")+'</div>';
 }
 
+function roomBlock(a,i){
+  return '<article class="room'+(i%2?" room--flip":"")+'" data-room="'+a.id+'">'+
+   '<div class="room__media">'+photo("",a.shots[0])+photo("",a.shots[1])+photo("",a.shots[2])+'</div>'+
+   '<div class="room__txt">'+
+     '<span class="eyebrow">Apartment 0'+(i+1)+' &middot; Igbogbo, Ikorodu</span>'+
+     '<h3 class="dsp d2" style="font-size:clamp(1.8rem,3.4vw,2.8rem)">'+a.name+'</h3>'+
+     '<p class="price">'+money(a.rate)+'<small>per night &middot; plus a '+money(HOTEL.cautionFee)+' caution fee, refundable after inspection</small></p>'+
+     '<div class="room__acts">'+
+       '<button class="btn btn--p btn--sm" type="button" data-book-apt="'+a.id+'">Book now</button>'+
+       '<a class="btn btn--g btn--sm" target="_blank" rel="noopener" href="'+
+         waLink("Hello "+HOTEL.name+", I would like to ask about the "+a.name+" apartment.")+'">Ask a question</a></div>'+
+   '</div></article>';
+}
+
 /* ---------- HOME ---------- */
 VIEWS["/"] = function(){ return ''+
 '<section class="hero">'+
@@ -217,11 +231,11 @@ VIEWS["/"] = function(){ return ''+
     '<h2 class="dsp d2">Eight ways to stay</h2></div>'+
     '<a class="btn btn--g" href="#/apartments">Full price list</a></div>'+
   '<div class="show">'+APARTMENTS.map(function(a,i){
-    return '<a class="shot" href="#/apartments" data-book-apt="'+a.id+'">'+photo("shot__media",a.shot)+
-      '<div class="shot__bd"><h3 class="dsp d3">'+a.name+'</h3>'+
-        '<div class="shot__row"><span class="shot__meta">Apartment 0'+(i+1)+' &middot; Book now</span>'+
+    return '<article class="shot shot--apt">'+photo("shot__media",a.shot)+
+      '<div class="shot__bd"><div class="shot__top"><h3 class="dsp d3">'+a.name+'</h3>'+
           '<span class="shot__rate">'+money(a.rate)+' <span>per night</span></span></div>'+
-      '</div></a>';
+        '<button class="btn-box" type="button" data-book-apt="'+a.id+'">Book now</button>'+
+      '</div></article>';
   }).join("")+'</div>'+
   cautionStrip()+
 '</div></section>'+
@@ -237,15 +251,13 @@ pageHero("Apartments &amp; price list","Eight apartments,<br>one clear price lis
   "Every apartment and its nightly price, with the fixed caution fee, in one place. Pick one and book direct.",
   "Shot 40 · Apartment interior, wide","v2","none")+
 '<section class="band band--s1"><div class="wrap">'+
-  '<div class="shead"><span class="eyebrow">Price list</span><h2 class="dsp d2">Apartments and prices</h2></div>'+
-  '<div class="plist" role="table" aria-label="Apartment price list">'+
-    '<div class="plist__h" role="row"><span role="columnheader">Apartment name</span><span role="columnheader">Apartment price</span><span></span></div>'+
-    APARTMENTS.map(function(a){
-      return '<div class="plist__r" role="row"><span class="plist__n" role="cell">'+a.name+'</span>'+
-        '<span class="plist__p" role="cell">'+money(a.rate)+'<small>per night</small></span>'+
-        '<span class="plist__a"><button class="btn btn--p btn--sm" type="button" data-book-apt="'+a.id+'">Book now</button></span></div>';
-    }).join("")+
+  '<div class="shead shead--split"><div class="shead__l"><span class="eyebrow">Pick your apartment</span><h2 class="dsp d2">The eight apartments</h2></div>'+
+    '<button class="btn btn--p" type="button" data-open-book>Check availability</button></div>'+
+  '<div class="tabs" id="roomTabs" role="tablist" aria-label="Apartments">'+
+    '<button type="button" role="tab" data-tab="all" aria-selected="true">All eight</button>'+
+    APARTMENTS.map(function(a){ return '<button type="button" role="tab" data-tab="'+a.id+'" aria-selected="false">'+a.name+'</button>'; }).join("")+
   '</div>'+
+  '<div class="rooms" id="roomRows">'+APARTMENTS.map(roomBlock).join("")+'</div>'+
   cautionStrip()+
   '<div class="notes">'+
     '<article class="note"><span class="note__ic" aria-hidden="true">&#8358;</span><div><h3 class="dsp d4">Apartment prices</h3><p class="small">This is the cost of booking or renting the apartment.</p></div></article>'+
