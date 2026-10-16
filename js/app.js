@@ -150,6 +150,35 @@ function marquee(){
   return '<div class="marq" aria-hidden="true"><div class="marq__track">'+row+row+'</div></div>';
 }
 /* 04 · three pillars */
+/* mission · vision · goal — the client's own wording, one source for the hero and the About page */
+var CREED = [
+ {n:"01",k:"Our mission",p:[
+  "Our mission is to create beautifully considered homes where every guest feels instantly welcomed, deeply at ease, and free to savour the art of living well.",
+  "Blending refined design with understated elegance and thoughtful comforts, we craft serene stays defined by genuine hospitality, impeccable care, and the quiet luxury of feeling truly at home."]},
+ {n:"02",k:"Our vision",p:[
+  "At Sabeis Homes, we envision more than a place to stay&mdash;we create spaces where guests can exhale, feel at home, and make lasting memories.",
+  "Our ambition is to become the trusted leading name in premium short-let apartments, known for delivering a comfortable, secure, spotless, and genuinely memorable home-away-from-home experience.",
+  "We are committed to raising the standard of short-let accommodation through exceptional facilities, dependable service, thoughtful hospitality, and a personal attention to every guest&rsquo;s needs. From the moment you arrive, every detail is designed to bring ease, peace, and confidence to your stay."]},
+ {n:"03",k:"Our goal",p:[
+  "Our goal is to create peaceful, stylish, and convenient spaces where every visit feels meaningful and every guest feels cared for&mdash;because at Sabeis Homes, simplicity meets class, and every stay feels like coming home."]}
+];
+function creedHero(){
+  return '<div class="hero__creed rise rise4">'+CREED.map(function(c,i){
+    return '<article class="cc"><div class="cc__hd"><span class="cc__n">'+c.n+'</span><span class="cc__k">'+c.k+'</span></div>'+
+      '<div class="cc__txt" id="cc'+i+'">'+c.p.map(function(t){return '<p>'+t+'</p>';}).join("")+'</div>'+
+      '<button class="cc__more" type="button" data-more aria-expanded="false" aria-controls="cc'+i+'"><span>Show more</span><i></i></button></article>';
+  }).join("")+'</div>';
+}
+function creedAbout(){
+  return '<section class="band vb"><div class="wrap">'+
+    '<div class="shead shead--split"><div class="shead__l"><span class="eyebrow">Why we do it</span>'+
+      '<h2 class="dsp d2">Mission, vision<br>and goal</h2></div>'+
+      '<p class="vb__intro">The three promises every decision in the house is measured against.</p></div>'+
+    '<div class="vb__grid">'+CREED.map(function(c){
+      return '<article class="vb__c"><span class="vb__n" aria-hidden="true">'+c.n+'</span><h3 class="vb__k">'+c.k+'</h3>'+
+        '<p class="vb__lead">'+c.p[0]+'</p>'+c.p.slice(1).map(function(t){return '<p class="vb__p">'+t+'</p>';}).join("")+'</article>';
+    }).join("")+'</div></div></section>';
+}
 function pillars(){
   return '<section class="band band--s1"><div class="wrap">'+
    '<div class="shead shead--split"><div class="shead__l"><span class="eyebrow">What the house does</span>'+
@@ -286,11 +315,11 @@ VIEWS["/"] = function(){ return ''+
   '<div class="hero__in">'+
     '<div class="hero__top">'+
       '<h1 class="dsp d1 rise rise2">Simplicity <em>meets</em> class</h1>'+
-      '<p class="hero__sub rise rise3">The fourteen-suite short-let house behind Lagos&rsquo; quietest nights.</p>'+
       '<div class="hero__acts rise rise4">'+
         '<button class="btn btn--p" type="button" data-open-book>Book now</button>'+
         '<a class="btn btn--o" href="#/suites">See the suites</a></div>'+
     '</div>'+
+    creedHero()+
     '<div class="hero__foot">'+
       '<div class="hero__facts"><span>24-hour power</span><span>Fibre Wi-Fi</span><span>Breakfast included</span><span>Airport transfer</span></div>'+
     '</div>'+
@@ -413,6 +442,7 @@ VIEWS["/about"] = function(){ return ''+
 pageHero("About","Simplicity<br>meets <em style=\"font-style:italic;color:var(--copper-hi)\">class</em>",
   "Sabeis Homes Ltd was registered to do one thing properly: run a small hotel in Lagos where nothing important is left to chance. The tagline is not marketing &mdash; it was the brief we gave the builders.",
   "Shot 29 · The building, from across the street","v3","none")+
+creedAbout()+
 pillars()+
 '<section class="band"><div class="wrap grid2" style="align-items:center">'+
   '<div style="display:grid;gap:18px"><span class="eyebrow">How it started</span>'+
@@ -622,7 +652,7 @@ function motion(){
   });
 
   /* --- 2 · blocks that fade up --- */
-  var rows = view.querySelectorAll(".shot, .pill article, .grid4 article, .testi, .card, .stats, .specs, .acc, .tags, .bullets, .numlist, .lede, .hero__acts, .hero__foot, .car__pane, .shead p, .eyebrow");
+  var rows = view.querySelectorAll(".shot, .pill article, .grid4 article, .testi, .card, .stats, .specs, .acc, .tags, .bullets, .numlist, .lede, .hero__acts, .hero__creed, .vb__c, .hero__foot, .car__pane, .shead p, .eyebrow");
   [].slice.call(rows).forEach(function(el,i){
     el.classList.add("up","is-armed");
     el.style.transitionDelay = ((i % 4) * 0.07) + "s";
@@ -898,6 +928,11 @@ function wireView(){
   updateTotal(); loadDraft();
 
   document.addEventListener("click",function(e){
+    var m=e.target.closest("[data-more]");
+    if(m){ var card=m.closest(".cc"), t=card.querySelector(".cc__txt"), open=!card.classList.contains("is-open");
+      t.style.maxHeight = open ? t.scrollHeight+"px" : "";
+      card.classList.toggle("is-open",open); m.setAttribute("aria-expanded",String(open));
+      m.firstChild.textContent = open ? "Show less" : "Show more"; return; }
     var o=e.target.closest("[data-open-book]");
     if(o){ e.preventDefault(); openBook(); return; }
     var s=e.target.closest("[data-book-suite]");
