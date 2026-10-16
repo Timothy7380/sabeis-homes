@@ -169,26 +169,29 @@ function creedHero(){
   }).join("")+'</div>';
 }
 function creedPanels(){
+  var tabs=function(i){ return CREED.map(function(c,j){
+    return '<button class="cp__t'+(j===i?' is-act':'')+'" type="button" data-creed-go="'+j+'">'+c.k.replace("Our ","")+'</button>'; }).join(""); };
   return '<div class="cps">'+CREED.map(function(c,i){
-    return '<section class="cp" id="cp'+i+'" aria-label="'+c.k+'"><button class="cp__x" type="button" data-creed-x aria-label="Close">&times;</button>'+
-      '<div class="cp__hd"><span class="cp__tri" aria-hidden="true"></span><h3 class="cp__k">'+c.k+'</h3></div>'+
-      '<div class="cp__txt">'+c.p.map(function(t){return '<p>'+t+'</p>';}).join("")+'</div></section>';
+    return '<section class="cp" id="cp'+i+'" aria-label="'+c.k+'"><div class="cp__bar"><div class="cp__tabs">'+tabs(i)+'</div>'+
+      '<button class="cp__x" type="button" data-creed-x aria-label="Close">&times;</button></div>'+
+      '<div class="cp__body"><div class="cp__hd"><span class="cp__tri" aria-hidden="true"></span><h3 class="cp__k">'+c.k+'</h3></div>'+
+      '<div class="cp__txt'+(c.p.length>1?' is-cols':'')+'">'+c.p.map(function(t){return '<p>'+t+'</p>';}).join("")+'</div></div></section>';
   }).join("")+'</div>';
 }
 function creedToggle(i){
   var hero=document.querySelector(".hero"); if(!hero) return;
-  var chips=hero.querySelector(".hero__creed"), btns=hero.querySelectorAll(".cc"), panels=hero.querySelectorAll(".cp");
+  var btns=hero.querySelectorAll(".cc"), panels=hero.querySelectorAll(".cp");
   var wasOn = i>=0 && panels[i].classList.contains("is-on");
-  [].forEach.call(panels,function(pn,k){ pn.classList.toggle("is-on", k===i && !wasOn); });
-  [].forEach.call(btns,function(bt,k){ bt.setAttribute("aria-expanded", String(k===i && !wasOn)); });
-  if(i>=0 && !wasOn){
-    var hr=hero.getBoundingClientRect(), cr=chips.getBoundingClientRect(), pn=panels[i];
-    if(window.innerWidth<=900){            /* phones & tablets: take over the hero below the nav, close with the x */
-      pn.style.bottom="12px"; pn.style.maxHeight=Math.round(hr.height-90)+"px";
-    } else {
-      pn.style.bottom=Math.round(hr.bottom-cr.top+14)+"px";
-      pn.style.maxHeight=Math.max(240,Math.round(cr.top-hr.top-90))+"px";
-    }
+  var on = i>=0 && !wasOn;
+  [].forEach.call(panels,function(pn,k){ pn.classList.toggle("is-on", on && k===i); });
+  [].forEach.call(btns,function(bt,k){ bt.setAttribute("aria-expanded", String(on && k===i)); });
+  hero.classList.toggle("has-cp", on);
+  if(on){
+    /* the card sits inside the hero, directly under the buttons (where the tabs were), and never leaves it */
+    var hr=hero.getBoundingClientRect(), ar=hero.querySelector(".hero__acts").getBoundingClientRect(), pn=panels[i];
+    var top = window.innerWidth<=900 ? 78 : Math.round(ar.bottom-hr.top+18);
+    pn.style.top=top+"px"; pn.style.bottom="auto";
+    pn.style.maxHeight=Math.max(120,Math.round(hr.height-top-16))+"px";
     pn.scrollTop=0;
   }
 }
@@ -345,9 +348,6 @@ VIEWS["/"] = function(){ return ''+
         '<a class="btn btn--o" href="#/suites">See the suites</a></div>'+
     '</div>'+
     creedHero()+
-    '<div class="hero__foot">'+
-      '<div class="hero__facts"><span>24-hour power</span><span>Fibre Wi-Fi</span></div>'+
-    '</div>'+
   '</div>'+
   creedPanels()+
 '</section>'+
@@ -954,6 +954,8 @@ function wireView(){
   updateTotal(); loadDraft();
 
   document.addEventListener("click",function(e){
+    var g=e.target.closest("[data-creed-go]");
+    if(g){ var j=+g.getAttribute("data-creed-go"); if(!document.getElementById("cp"+j).classList.contains("is-on")) creedToggle(j); return; }
     var m=e.target.closest("[data-creed]"), x=e.target.closest("[data-creed-x]");
     if(m||x){ creedToggle(m?+m.getAttribute("data-creed"):-1); return; }
     var o=e.target.closest("[data-open-book]");
