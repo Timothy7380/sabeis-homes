@@ -13,14 +13,14 @@ var NAV = [
 
 /* the price list, exactly as published — price is per night */
 var APARTMENTS = [
-  { id:"divine",   name:"Divine",    rate:73500, shot:"Shot 02", shots:["Shot 02","Shot 02b","Shot 02c"] },
-  { id:"heritage", name:"Heritage",  rate:73500, shot:"Shot 03", shots:["Shot 03","Shot 03b","Shot 03c"] },
-  { id:"electrum", name:"Electrum",  rate:73500, shot:"Shot 05b", shots:["Shot 05b","Shot 05","Shot 05c"] },
-  { id:"sunset",   name:"Sunset",    rate:73500, shot:"Shot 04", shots:["Shot 04","Shot 04b","Shot 04c"] },
-  { id:"love",     name:"Love",      rate:84000, shot:"Shot 05", shots:["Shot 05","Shot 05b","Shot 02b"] },
-  { id:"square",   name:"Square",    rate:84000, shot:"Shot 03c", shots:["Shot 03c","Shot 03","Shot 03b"] },
-  { id:"apex",     name:"Apex",      rate:105000, shot:"Shot 05c", shots:["Shot 05c","Shot 05","Shot 05b"] },
-  { id:"cityview", name:"City View", rate:126000, shot:"Shot 04b", shots:["Shot 04b","Shot 04","Shot 04c"] }
+  { id:"divine",   name:"Divine",    rate:73500, tag:"Living room &middot; Kitchen &middot; Bedroom", desc:["Divine is bold and bright. An olive-green sectional sofa sits on a golden rug beneath green and blue LED ceiling lighting, facing a marble-effect TV wall, with floor-length gold drapes framing the room.", "The open kitchen is finished in glossy black with a breakfast bar and yellow stools. In the bedroom, a velvet amber headboard and warm orange bedding meet a built-in marble-finish wardrobe with its own desk."], photos:["img/apt/divine-02.jpg", "img/apt/divine-07.jpg", "img/apt/divine-06.jpg", "img/apt/divine-01.jpg", "img/apt/divine-03.jpg", "img/apt/divine-04.jpg", "img/apt/divine-05.jpg", "img/apt/divine-08.jpg"] },
+  { id:"heritage", name:"Heritage",  rate:73500, tag:"Living room &middot; Kitchen &middot; Bedroom &middot; Bathroom", desc:["Heritage pairs sculpted green armchairs and a curved orange loveseat around round marble tables, set against a marble feature wall with a slatted TV unit.", "A charcoal gloss kitchen has an island with bar stools. The bedroom has a padded grey headboard, a wall-mounted TV, soft purple mood lighting and a built-in wardrobe with a desk, and the bathroom has a marble-walled glass shower."], photos:["img/apt/heritage-02.jpg", "img/apt/heritage-04.jpg", "img/apt/heritage-03.jpg", "img/apt/heritage-01.jpg", "img/apt/heritage-05.jpg", "img/apt/heritage-06.jpg", "img/apt/heritage-07.jpg"] },
+  { id:"electrum", name:"Electrum",  rate:73500, tag:"Living room &middot; Kitchen &middot; Bedroom &middot; Bathroom", desc:["Electrum is calm and modern: a grey L-shaped sofa under a crystal chandelier, with framed African art on the walls.", "The grey gloss kitchen comes with a gas hob, extractor hood and an island with red bar stools. The bedroom has a navy padded headboard and a timber wardrobe with a built-in desk, and the bathroom has a walk-in glass shower."], photos:["img/apt/electrum-02.jpg", "img/apt/electrum-05.jpg", "img/apt/electrum-03.jpg", "img/apt/electrum-01.jpg", "img/apt/electrum-04.jpg", "img/apt/electrum-06.jpg", "img/apt/electrum-07.jpg"] },
+  { id:"sunset",   name:"Sunset",    rate:73500, tag:"Living room &middot; Kitchen &middot; Bedroom &middot; Bathroom", desc:["Sunset mixes blue velvet tub chairs with a rust-orange loveseat around a marble coffee table, under a ring chandelier and navy curtains.", "The wood-grain kitchen has a marble breakfast bar and gas hob. The bedroom has a tall grey channelled headboard and a marble-finish wardrobe with a desk, and the bathroom has a backlit round mirror and a glass shower."], photos:["img/apt/sunset-01.jpg", "img/apt/sunset-03.jpg", "img/apt/sunset-02.jpg", "img/apt/sunset-04.jpg", "img/apt/sunset-05.jpg", "img/apt/sunset-06.jpg"] },
+  { id:"love",     name:"Love",      rate:84000, tag:"Living room &middot; Kitchen &middot; Bedroom &middot; Bathroom", desc:["Love is soft and welcoming: a pale cushioned sectional and round table on a black-and-white rug, fresh flowers, and a slatted timber TV wall.", "The wood-grain kitchen has a breakfast bar with a red stool. The bedroom is in deep grey with a full-width padded headboard and a timber wardrobe with a desk, and the marble bathroom has an illuminated mirror and water heater."], photos:["img/apt/love-02.jpg", "img/apt/love-07.jpg", "img/apt/love-05.jpg", "img/apt/love-01.jpg", "img/apt/love-03.jpg", "img/apt/love-04.jpg", "img/apt/love-06.jpg", "img/apt/love-08.jpg", "img/apt/love-09.jpg"] },
+  { id:"square",   name:"Square",    rate:84000, tag:"Living room &middot; Kitchen &middot; Bedroom &middot; Bathroom", desc:["Square brings warm orange armchairs and a grey sofa together in front of a timber TV wall, under green LED ceiling lighting.", "The grey gloss L-shaped kitchen has a gas hob, island and bar stool. The bedroom has a cream channelled headboard, bright orange bedding, blue mood lighting and a gloss wardrobe with a desk, and the marble bathroom has a round mirror and water heater."], photos:["img/apt/square-01.jpg", "img/apt/square-06.jpg", "img/apt/square-05.jpg", "img/apt/square-02.jpg", "img/apt/square-03.jpg", "img/apt/square-04.jpg", "img/apt/square-07.jpg", "img/apt/square-08.jpg"] },
+  { id:"apex",     name:"Apex",      rate:105000, tag:"Living room &middot; Kitchen &middot; Bedroom &middot; Bathroom", desc:["Apex is cheerful and polished: mustard-yellow armchairs and a grey sofa around a marble coffee table, with green cove lighting and a slatted TV wall.", "The white kitchen has a marble breakfast bar, four-burner gas hob and extractor. The bedroom has a mustard channelled headboard, plaid bedding, a wall-mounted TV, a rust armchair and a wardrobe with a desk, and the bathroom has a glass shower."], photos:["img/apt/apex-02.jpg", "img/apt/apex-06.jpg", "img/apt/apex-04.jpg", "img/apt/apex-01.jpg", "img/apt/apex-03.jpg", "img/apt/apex-05.jpg", "img/apt/apex-07.jpg", "img/apt/apex-08.jpg", "img/apt/apex-09.jpg"] },
+  { id:"cityview", name:"City View", rate:126000, tag:"Living room &middot; Kitchen &middot; Bedroom &middot; Bathroom", desc:["City View is warm and refined: a cream sectional with mustard cushions on a swirl rug, beneath a tiered ring chandelier and beside a timber TV wall.", "The white-and-black kitchen glows with blue cabinet lighting and has a bar with an orange stool. The bedroom has a padded headboard, floral bedding and a mustard armchair beside a tall timber wardrobe, and the bathroom has a glass shower."], photos:["img/apt/cityview-03.jpg", "img/apt/cityview-05.jpg", "img/apt/cityview-04.jpg", "img/apt/cityview-01.jpg", "img/apt/cityview-02.jpg", "img/apt/cityview-06.jpg", "img/apt/cityview-07.jpg"] }
 ];
 
 var FAQ = [
@@ -75,8 +75,8 @@ function mark(i){
 }
 function photo(cls,shot,style){
   /* .photo__inner is the layer that parallaxes; drops a real <img> inside .photo__zoom when IMAGES has that shot */
-  var code = shot && (shot.match(/^(?:Shot )?(\d+[a-z]?)/i) || [])[1];
-  var src = code && IMAGES[code];
+  var code = shot && !/\.jpg$/.test(shot) && (shot.match(/^(?:Shot )?(\d+[a-z]?)/i) || [])[1];
+  var src = /\.jpg$/.test(shot||"") ? shot : (code && IMAGES[code]);
   var fill = src ? '<img src="'+src+'" alt="" loading="lazy">' : '';
   return '<div class="photo '+(cls||"")+'"'+(style?' style="'+style+'"':'')+'>'+
          '<span class="photo__inner"><span class="photo__zoom">'+fill+'</span></span></div>';
@@ -199,17 +199,43 @@ function contactCards(){
 
 function roomBlock(a,i){
   return '<article class="room'+(i%2?" room--flip":"")+'" data-room="'+a.id+'">'+
-   '<div class="room__media">'+photo("",a.shots[0])+photo("",a.shots[1])+photo("",a.shots[2])+'</div>'+
+   '<div class="room__media" data-gallery="'+a.id+'" title="See all photos">'+photo("",a.photos[0])+photo("",a.photos[1])+photo("",a.photos[2])+'</div>'+
    '<div class="room__txt">'+
-     '<span class="eyebrow">Apartment 0'+(i+1)+' &middot; Igbogbo, Ikorodu</span>'+
+     '<span class="eyebrow">'+a.tag+'</span>'+
      '<h3 class="dsp d2" style="font-size:clamp(1.8rem,3.4vw,2.8rem)">'+a.name+'</h3>'+
+     a.desc.map(function(t){ return '<p class="body">'+t+'</p>'; }).join("")+
      '<p class="price">'+money(a.rate)+'<small>per night &middot; plus a '+money(HOTEL.cautionFee)+' caution fee, refundable after inspection</small></p>'+
      '<div class="room__acts">'+
        '<button class="btn btn--p btn--sm" type="button" data-book-apt="'+a.id+'">Book now</button>'+
+       '<button class="btn btn--g btn--sm" type="button" data-gallery="'+a.id+'">See all '+a.photos.length+' photos</button>'+
        '<a class="btn btn--g btn--sm" target="_blank" rel="noopener" href="'+
          waLink("Hello "+HOTEL.name+", I would like to ask about the "+a.name+" apartment.")+'">Ask a question</a></div>'+
    '</div></article>';
 }
+/* ---------- photo gallery (lightbox) ---------- */
+var LB={a:null,i:0};
+function lbOpen(id,i){
+  LB.a=aptById(id); LB.i=i||0;
+  var el=$("#lb"); if(!el){ el=document.createElement("div"); el.id="lb"; el.className="lb"; el.setAttribute("role","dialog"); el.setAttribute("aria-modal","true");
+    el.innerHTML='<button class="lb__x" type="button" data-lb="x" aria-label="Close">&times;</button>'+
+      '<button class="lb__nav lb__prev" type="button" data-lb="-1" aria-label="Previous photo">&#8249;</button>'+
+      '<figure class="lb__fig"><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>'+
+      '<button class="lb__nav lb__next" type="button" data-lb="1" aria-label="Next photo">&#8250;</button>';
+    document.body.appendChild(el);
+    el.addEventListener("click",function(e){ var b=e.target.closest("[data-lb]");
+      if(b){ var v=b.getAttribute("data-lb"); if(v==="x") lbClose(); else lbGo(+v); return; }
+      if(e.target===el) lbClose(); });
+    var x0=null; el.addEventListener("pointerdown",function(e){x0=e.clientX;});
+    el.addEventListener("pointerup",function(e){ if(x0===null)return; var d=e.clientX-x0; x0=null; if(Math.abs(d)>44) lbGo(d<0?1:-1); });
+  }
+  lbShow(); el.setAttribute("data-open","true"); document.body.style.overflow="hidden";
+}
+function lbShow(){ var a=LB.a; $("#lbImg").src=a.photos[LB.i]; $("#lbImg").alt=a.name+" apartment, photo "+(LB.i+1);
+  $("#lbCap").textContent=a.name+" · "+(LB.i+1)+" / "+a.photos.length; }
+function lbGo(d){ var n=LB.a.photos.length; LB.i=(LB.i+d+n)%n; lbShow(); }
+function lbClose(){ var el=$("#lb"); if(el) el.setAttribute("data-open","false"); document.body.style.overflow=""; }
+document.addEventListener("keydown",function(e){ var el=$("#lb"); if(!el||el.getAttribute("data-open")!=="true") return;
+  if(e.key==="Escape") lbClose(); else if(e.key==="ArrowRight") lbGo(1); else if(e.key==="ArrowLeft") lbGo(-1); });
 
 /* ---------- HOME ---------- */
 VIEWS["/"] = function(){ return ''+
@@ -231,7 +257,7 @@ VIEWS["/"] = function(){ return ''+
     '<h2 class="dsp d2">Eight ways to stay</h2></div>'+
     '<a class="btn btn--g" href="#/apartments">Full price list</a></div>'+
   '<div class="show">'+APARTMENTS.map(function(a,i){
-    return '<article class="shot shot--apt">'+photo("shot__media",a.shot)+
+    return '<article class="shot shot--apt">'+photo("shot__media",a.photos[0])+
       '<div class="shot__bd"><div class="shot__top"><h3 class="dsp d3">'+a.name+'</h3>'+
           '<span class="shot__rate">'+money(a.rate)+' <span>per night</span></span></div>'+
         '<button class="btn-box" type="button" data-book-apt="'+a.id+'">Book now</button>'+
@@ -727,6 +753,8 @@ function wireView(){
     if(g){ var j=+g.getAttribute("data-creed-go"); if(!document.getElementById("cp"+j).classList.contains("is-on")) creedToggle(j); return; }
     var m=e.target.closest("[data-creed]"), x=e.target.closest("[data-creed-x]");
     if(m||x){ creedToggle(m?+m.getAttribute("data-creed"):-1); return; }
+    var gl=e.target.closest("[data-gallery]");
+    if(gl){ var ph=e.target.closest(".photo"), idx=0; if(ph){ idx=[].indexOf.call(gl.querySelectorAll(".photo"),ph); } lbOpen(gl.getAttribute("data-gallery"),Math.max(0,idx)); return; }
     var o=e.target.closest("[data-open-book]");
     if(o){ e.preventDefault(); openBook(); return; }
     var s=e.target.closest("[data-book-apt]");
