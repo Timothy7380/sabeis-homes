@@ -163,20 +163,45 @@ var CREED = [
   "Our goal is to create peaceful, stylish, and convenient spaces where every visit feels meaningful and every guest feels cared for&mdash;because at Sabeis Homes, simplicity meets class, and every stay feels like coming home."]}
 ];
 function creedHero(){
-  return '<div class="hero__creed rise rise4">'+CREED.map(function(c,i){
-    return '<article class="cc"><div class="cc__hd"><span class="cc__n">'+c.n+'</span><span class="cc__k">'+c.k+'</span></div>'+
-      '<div class="cc__txt" id="cc'+i+'">'+c.p.map(function(t){return '<p>'+t+'</p>';}).join("")+'</div>'+
-      '<button class="cc__more" type="button" data-more aria-expanded="false" aria-controls="cc'+i+'"><span>Show more</span><i></i></button></article>';
+  return '<div class="hero__creed rise rise4" role="group" aria-label="Mission, vision and goal">'+CREED.map(function(c,i){
+    return '<button class="cc" type="button" data-creed="'+i+'" aria-expanded="false" aria-controls="cp'+i+'">'+
+      '<span class="cc__n">'+c.n+'</span><span class="cc__k">'+c.k+'</span><i></i></button>';
   }).join("")+'</div>';
 }
+function creedPanels(){
+  return '<div class="cps">'+CREED.map(function(c,i){
+    return '<section class="cp" id="cp'+i+'" aria-label="'+c.k+'"><button class="cp__x" type="button" data-creed-x aria-label="Close">&times;</button>'+
+      '<div class="cp__hd"><span class="cp__n" aria-hidden="true">'+c.n+'</span><span class="cp__k">'+c.k+'</span></div>'+
+      '<div class="cp__txt">'+c.p.map(function(t){return '<p>'+t+'</p>';}).join("")+'</div></section>';
+  }).join("")+'</div>';
+}
+function creedToggle(i){
+  var hero=document.querySelector(".hero"); if(!hero) return;
+  var chips=hero.querySelector(".hero__creed"), btns=hero.querySelectorAll(".cc"), panels=hero.querySelectorAll(".cp");
+  var wasOn = i>=0 && panels[i].classList.contains("is-on");
+  [].forEach.call(panels,function(pn,k){ pn.classList.toggle("is-on", k===i && !wasOn); });
+  [].forEach.call(btns,function(bt,k){ bt.setAttribute("aria-expanded", String(k===i && !wasOn)); });
+  if(i>=0 && !wasOn){
+    var hr=hero.getBoundingClientRect(), cr=chips.getBoundingClientRect(), pn=panels[i];
+    if(window.innerWidth<=900){            /* phones & tablets: take over the hero below the nav, close with the x */
+      pn.style.bottom="12px"; pn.style.maxHeight=Math.round(hr.height-90)+"px";
+    } else {
+      pn.style.bottom=Math.round(hr.bottom-cr.top+14)+"px";
+      pn.style.maxHeight=Math.max(240,Math.round(cr.top-hr.top-90))+"px";
+    }
+    pn.scrollTop=0;
+  }
+}
+function creedClose(){ var o=document.querySelector(".cp.is-on"); if(o) creedToggle(-1); }
+document.addEventListener("keydown",function(e){ if(e.key==="Escape") creedClose(); });
+var creedW=window.innerWidth; window.addEventListener("resize",function(){ if(window.innerWidth!==creedW){ creedW=window.innerWidth; creedClose(); } });
+window.addEventListener("hashchange",creedClose);
 function creedAbout(){
-  return '<section class="band vb"><div class="wrap">'+
-    '<div class="shead shead--split"><div class="shead__l"><span class="eyebrow">Why we do it</span>'+
-      '<h2 class="dsp d2">Mission, vision<br>and goal</h2></div>'+
-      '<p class="vb__intro">The three promises every decision in the house is measured against.</p></div>'+
-    '<div class="vb__grid">'+CREED.map(function(c){
-      return '<article class="vb__c"><span class="vb__n" aria-hidden="true">'+c.n+'</span><h3 class="vb__k">'+c.k+'</h3>'+
-        '<p class="vb__lead">'+c.p[0]+'</p>'+c.p.slice(1).map(function(t){return '<p class="vb__p">'+t+'</p>';}).join("")+'</article>';
+  return '<section class="band"><div class="wrap">'+
+    '<div class="shead"><span class="eyebrow">Why we do it</span><h2 class="dsp d2">Mission, vision<br>and goal</h2></div>'+
+    '<div class="vcard">'+CREED.map(function(c){
+      return '<article class="vcard__c"><span class="vcard__tri" aria-hidden="true"></span><h3 class="vcard__t">'+c.k+'</h3>'+
+        c.p.map(function(t){return '<p>'+t+'</p>';}).join("")+'</article>';
     }).join("")+'</div></div></section>';
 }
 function pillars(){
@@ -321,9 +346,10 @@ VIEWS["/"] = function(){ return ''+
     '</div>'+
     creedHero()+
     '<div class="hero__foot">'+
-      '<div class="hero__facts"><span>24-hour power</span><span>Fibre Wi-Fi</span><span>Breakfast included</span><span>Airport transfer</span></div>'+
+      '<div class="hero__facts"><span>24-hour power</span><span>Fibre Wi-Fi</span></div>'+
     '</div>'+
   '</div>'+
+  creedPanels()+
 '</section>'+
 /* 02 · four-card showcase grid */
 '<section class="band" style="padding-top:clamp(30px,4vw,48px)"><div class="wrap">'+
@@ -652,7 +678,7 @@ function motion(){
   });
 
   /* --- 2 · blocks that fade up --- */
-  var rows = view.querySelectorAll(".shot, .pill article, .grid4 article, .testi, .card, .stats, .specs, .acc, .tags, .bullets, .numlist, .lede, .hero__acts, .hero__creed, .vb__c, .hero__foot, .car__pane, .shead p, .eyebrow");
+  var rows = view.querySelectorAll(".shot, .pill article, .grid4 article, .testi, .card, .stats, .specs, .acc, .tags, .bullets, .numlist, .lede, .hero__acts, .hero__creed, .vcard__c, .hero__foot, .car__pane, .shead p, .eyebrow");
   [].slice.call(rows).forEach(function(el,i){
     el.classList.add("up","is-armed");
     el.style.transitionDelay = ((i % 4) * 0.07) + "s";
@@ -928,11 +954,8 @@ function wireView(){
   updateTotal(); loadDraft();
 
   document.addEventListener("click",function(e){
-    var m=e.target.closest("[data-more]");
-    if(m){ var card=m.closest(".cc"), t=card.querySelector(".cc__txt"), open=!card.classList.contains("is-open");
-      t.style.maxHeight = open ? t.scrollHeight+"px" : "";
-      card.classList.toggle("is-open",open); m.setAttribute("aria-expanded",String(open));
-      m.firstChild.textContent = open ? "Show less" : "Show more"; return; }
+    var m=e.target.closest("[data-creed]"), x=e.target.closest("[data-creed-x]");
+    if(m||x){ creedToggle(m?+m.getAttribute("data-creed"):-1); return; }
     var o=e.target.closest("[data-open-book]");
     if(o){ e.preventDefault(); openBook(); return; }
     var s=e.target.closest("[data-book-suite]");
