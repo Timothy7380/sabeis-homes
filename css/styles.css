@@ -216,21 +216,22 @@ p{margin:0}
 .cps{position:absolute;inset:0;z-index:3;pointer-events:none}
 .cp{position:absolute;left:max(var(--gut),calc((100% - var(--wrap))/2 + var(--gut)));right:max(var(--gut),calc((100% - var(--wrap))/2 + var(--gut)));
   top:0;overflow:auto;overscroll-behavior:contain;border-radius:16px;color:var(--ink);
-  padding:0 clamp(20px,2.6vw,36px) clamp(14px,1.4vw,18px);background:#fff;border:1px solid var(--line);
-  box-shadow:0 30px 60px -24px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.08);
+  padding:0 clamp(20px,2.6vw,36px) clamp(14px,1.4vw,18px);background:rgba(255,255,255,.8);
+  -webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 30px 60px -24px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.8);
   opacity:0;visibility:hidden;transform:translateY(10px) scale(.99);transform-origin:bottom center;
   transition:opacity .3s var(--ease),transform .4s var(--ease),visibility 0s .4s}
 .cp.is-on{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:opacity .3s var(--ease),transform .4s var(--ease)}
 .hero.has-cp .hero__creed{opacity:0;pointer-events:none;transition:opacity .25s}
 .hero__creed{transition:opacity .35s .1s}
-.cp__bar{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);margin-bottom:clamp(12px,1.2vw,16px)}
+.cp__bar{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(30,26,22,.16);margin-bottom:clamp(12px,1.2vw,16px)}
 .cp__tabs{display:flex;gap:clamp(14px,2.4vw,34px)}
 .cp__t{position:relative;background:none;border:0;cursor:pointer;padding:12px 0 10px;font-family:"Plus Jakarta Sans",sans-serif;font-size:.7rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:.16em;color:var(--dim,#7B7366);transition:color .2s}
+  text-transform:uppercase;letter-spacing:.16em;color:#4C453C;transition:color .2s}
 .cp__t::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
 .cp__t:hover{color:var(--ink)}
 .cp__t.is-act{color:var(--ink)}.cp__t.is-act::after{transform:none}
-.cp__x{flex:none;width:32px;height:32px;border-radius:999px;border:1px solid var(--line);background:var(--cream-2);color:var(--ink);cursor:pointer;
+.cp__x{flex:none;width:32px;height:32px;border-radius:999px;border:1px solid rgba(30,26,22,.2);background:rgba(255,255,255,.55);color:var(--ink);cursor:pointer;
   display:grid;place-items:center;font-size:1.15rem;line-height:1;transition:background .2s,border-color .2s}
 .cp__x:hover{background:var(--copper-wash);border-color:var(--copper)}
 .cp__body{display:grid;grid-template-columns:minmax(150px,.55fr) 3fr;gap:clamp(14px,2.6vw,40px);align-items:start}
@@ -238,7 +239,7 @@ p{margin:0}
 .cp__tri{display:block;width:24px;height:24px;background:linear-gradient(135deg,var(--copper-hi),var(--copper));clip-path:polygon(0 0,100% 0,0 100%)}
 .cp__k{margin:0;font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:clamp(1.3rem,1.8vw,1.6rem);letter-spacing:-.025em;line-height:1.1;color:var(--ink)}
 .cp__txt{display:grid;gap:10px}
-.cp__txt p{margin:0;line-height:1.56;font-size:clamp(.86rem,.92vw,.94rem);color:var(--ink-2)}
+.cp__txt p{margin:0;line-height:1.56;font-size:clamp(.86rem,.92vw,.94rem);color:#2B251F}
 @media (min-width:1000px){.cp__txt.is-cols{display:block;column-count:2;column-gap:clamp(24px,3vw,48px)}
   .cp__txt.is-cols p{break-inside:avoid;margin:0 0 9px}.cp__txt.is-cols p:last-child{margin-bottom:0}}
 @media (min-width:1000px) and (max-width:1340px){.cp__txt p{font-size:.84rem;line-height:1.5}.hero__in{padding-bottom:172px}}
@@ -247,7 +248,7 @@ p{margin:0}
   .cc{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 12px}
   .cc__n{font-size:1.15rem}.cc__k{font-size:.6rem;letter-spacing:.14em;flex:none}.cc i{display:none}
   .cc::before{left:12px}
-  .cp{padding:0 18px 20px;border-radius:14px}
+  .cp{padding:0 18px 20px;border-radius:14px;background:rgba(255,255,255,.9)}
   .cp__t{font-size:.62rem;letter-spacing:.1em}
   .cp__body{grid-template-columns:1fr;gap:10px}
   .cp__hd{grid-auto-flow:column;justify-content:start;align-items:center;gap:10px}.cp__tri{width:18px;height:18px}
