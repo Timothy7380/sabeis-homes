@@ -171,7 +171,7 @@ function creedHero(){
 function creedPanels(){
   return '<div class="cps">'+CREED.map(function(c,i){
     return '<section class="cp" id="cp'+i+'" aria-label="'+c.k+'"><button class="cp__x" type="button" data-creed-x aria-label="Close">&times;</button>'+
-      '<div class="cp__hd"><span class="cp__n" aria-hidden="true">'+c.n+'</span><span class="cp__k">'+c.k+'</span></div>'+
+      '<div class="cp__hd"><span class="cp__tri" aria-hidden="true"></span><h3 class="cp__k">'+c.k+'</h3></div>'+
       '<div class="cp__txt">'+c.p.map(function(t){return '<p>'+t+'</p>';}).join("")+'</div></section>';
   }).join("")+'</div>';
 }
