@@ -1,84 +1,40 @@
 /* ===================== CONFIG ===================== */
 var HOTEL = {
-  name:"Sabeis Homes", whatsapp:"2349160291333",
-  email:"sabeishomes@gmail.com", directDiscount:0.10, paystackKey:""
+  name:"Sabeis Homes", whatsapp:"2349129992454", email:"sabeishomes@gmail.com",
+  phones:["08069397507","09160291333"], cautionFee:50000
 };
 
 var NAV = [
   {h:"#/",        t:"Home"},
-  {h:"#/suites",  t:"Suites"},
+  {h:"#/apartments",  t:"Apartments"},
   {h:"#/about",   t:"About"},
   {h:"#/contact", t:"Contact"}
 ];
 
-var SUITES = [
-  { id:"classic", name:"Classic Room", rate:45000, v:"",
-    tagline:"24 m² · Queen bed · Courtyard view",
-    pitch:"The smallest room in the house and the one we are proudest of. A queen bed against the long wall, blackout curtains that actually black out, and a walk-in rain shower behind glass. The desk faces the window rather than the wall — the sort of decision that only matters once you are working at it.",
-    specs:[["Size","24 m²"],["Bed","One queen"],["Sleeps","2 guests"],["Floor","First and second"],["View","Courtyard"],["Bathroom","Walk-in rain shower"]],
-    amen:["Blackout curtains with sheer inner drapes","Inverter-backed socket beside the bed","55-inch smart TV","Writing desk with task lamp","Two reading lamps","Individually controlled air conditioning","Wardrobe with iron and board","Mini fridge, restocked daily","Safe sized for a laptop","Fibre Wi-Fi","Kettle, cafetière and loose tea","Housekeeping daily; linen every second day"],
-    shots:["Shot 02 · Classic Room, morning light","Shot 02b · Shower detail","Shot 02c · Desk corner"] },
-  { id:"deluxe", name:"Deluxe Suite", rate:65000, v:"v2",
-    tagline:"36 m² · King bed · Rear garden",
-    pitch:"A king bed, a proper armchair you would actually sit in, and a bathroom with a tub. The Deluxe suites sit at the back of the building where the road cannot reach them, which makes them the quietest rooms we have. Guests who come back tend to come back to this one.",
-    specs:[["Size","36 m²"],["Bed","One king"],["Sleeps","2 guests"],["Floor","Second and third"],["View","Rear garden"],["Bathroom","Tub and separate shower"]],
-    amen:["Everything in the Classic Room","Bathtub with separate rain shower","Armchair and footstool","Bathrobes and slippers","Nespresso machine","Bluetooth speaker","Full-length mirror","Pillow menu: firm, soft, or both","Turndown service on request"],
-    shots:["Shot 03 · Deluxe Suite, bed and window","Shot 03b · Bathtub","Shot 03c · Armchair"] },
-  { id:"executive", name:"Executive Suite", rate:95000, v:"v3",
-    tagline:"52 m² · King + sofa bed · Balcony",
-    pitch:"A separate sitting room with a sofa bed, a kitchenette with a hob and a microwave, and a balcony over the courtyard. Built for the guest staying a fortnight rather than a night — long enough that you want somewhere to put your things and cook your own eggs on a Sunday.",
-    specs:[["Size","52 m²"],["Bed","King plus sofa bed"],["Sleeps","3 guests"],["Floor","Second"],["View","Courtyard balcony"],["Bathroom","Tub, shower, twin basins"]],
-    amen:["Everything in the Deluxe Suite","Separate sitting room with sofa bed","Kitchenette: two-ring hob, microwave, sink","Full-size fridge","Dining table for four","Balcony with two chairs","Second TV in the sitting room","Weekly laundry allowance of ten items","Extra bed at ₦12,000 a night"],
-    shots:["Shot 04 · Executive Suite, living room","Shot 04b · Kitchenette","Shot 04c · Balcony"] },
-  { id:"penthouse", name:"Sabeis Penthouse", rate:180000, v:"v4",
-    tagline:"88 m² · Two bedrooms · Private terrace",
-    pitch:"The whole top floor. Two bedrooms, a full kitchen, a dining table for six and a private terrace looking over the estate. Let as one unit and never split, with the rooftop lounge reservable privately. This is the suite people take for a family Christmas or a week of closing a deal.",
-    specs:[["Size","88 m²"],["Bed","Two kings"],["Sleeps","4 guests"],["Floor","Third, entire"],["View","Private terrace"],["Bathroom","Two, both with tubs"]],
-    amen:["Everything in the Executive Suite","Two bedrooms, each en suite","Full kitchen with oven and dishwasher","Dining table for six","Private terrace with loungers","Rooftop lounge reservable privately","Twice-daily housekeeping if wanted","Airport transfer included both ways","Direct line to the front desk"],
-    shots:["Shot 05 · Penthouse terrace at dusk","Shot 05b · Second bedroom","Shot 05c · Kitchen"] }
-];
-
-/* the marquee — the reference runs client logos here; this runs the house's standing promises */
-var MARQ = ["24-hour power","Fibre Wi-Fi in every suite","Breakfast cooked to order","Airport transfer",
-  "Front desk, 24 hours","Free cancellation to 48 hours","Secure gated parking","Rooftop until late",
-  "Laundry back by six","Direct rate, always lowest"];
-
-/* two spaces — the reference's carousel, trimmed to what the house still shows */
-var SPACES = [
-  { n:"The Suites", k:"Fourteen, four layouts", v:"",
-    d:"Three floors, fourteen suites, four layouts from 24 m² to an 88 m² penthouse. Every one gets blackout curtains, fibre, an inverter-backed socket by the bed and breakfast in the rate.",
-    shot:"Shot 40 · Suite interior, wide", go:"#/suites", goT:"Suites & rates" },
-  { n:"The Copper Room", k:"Daily, 07:00 – 22:30", v:"v2",
-    d:"Eleven tables under copper pendants. Breakfast to order and included in every rate; dinner is nine plates, Nigerian and continental, changed as the market changes.",
-    shot:"Shot 06 · The Copper Room, dinner service", go:"#/dining", goT:"Dining" }
-];
-
-var AMENITIES = [
-  ["Round-the-clock power","Grid, generator and inverter, switching over automatically. The lights do not go out here."],
-  ["Fibre Wi-Fi","A dedicated fibre line with LTE backup — fast enough for calls from every room."],
-  ["Airport transfer","A driver at arrivals with your name on a card. ₦25,000 each way."],
-  ["Breakfast included","Cooked to order downstairs, or brought up on a tray at the hour you name."],
-  ["Daily housekeeping","Suites serviced each morning, fresh linen every second day."],
-  ["Laundry &amp; pressing","In by nine, back by six, Monday to Saturday."],
-  ["Secure parking","A gated compound with cameras and a guard through the night."],
-  ["Concierge, 24 hours","Tables, drivers, tailors, SIM cards. Ask at the desk."]
+/* the price list, exactly as published — price is per night */
+var APARTMENTS = [
+  { id:"divine",   name:"Divine",    rate:73500 },
+  { id:"heritage", name:"Heritage",  rate:73500 },
+  { id:"electrum", name:"Electrum",  rate:73500 },
+  { id:"sunset",   name:"Sunset",    rate:73500 },
+  { id:"love",     name:"Love",      rate:84000 },
+  { id:"square",   name:"Square",    rate:84000 },
+  { id:"apex",     name:"Apex",      rate:105000 },
+  { id:"cityview", name:"City View", rate:126000 }
 ];
 
 var FAQ = [
-  ["What time can I check in?","Arrival is from 14:00 and departure by 12:00. If your flight lands early, leave your bags with the desk and use the rooftop until your suite is ready — there is no charge for that."],
-  ["Is breakfast really included?","Yes, in every rate, cooked to order rather than laid out on a buffet. Tell the desk the night before if you want it in your suite, and at what time."],
-  ["How do I pay?","Deposits and balances go through Paystack, and we also take bank transfers and cash on arrival. Rates include VAT — the figure you see is the figure you pay."],
-  ["Can I hold a suite without paying?","One night's rate holds it, but if you would rather not prepay, say so on WhatsApp and we will hold it against your phone number instead."],
-  ["Is there a generator?","Grid, generator and inverter, in that order, switching over on their own. Guests generally do not notice a change at all."],
-  ["Do you allow children?","Children are welcome. Cots are free and an extra bed in the Executive Suite or Penthouse is ₦12,000 a night."]
+  ["What does the apartment price cover?","The apartment price is the cost of booking or renting the apartment, quoted per night."],
+  ["What is the caution fee?","A fixed caution fee of ₦50,000 is paid with your booking. It is refundable after inspection."],
+  ["How do I book?","Use the Book now button, call us, or message us on WhatsApp. We confirm availability and the next steps with you directly."],
+  ["Where are the apartments?","35, Baganju Street, behind Homat School, Igbogbo, Ikorodu, Lagos State."]
 ];
 
 /* ===================== HELPERS ===================== */
 var nf=new Intl.NumberFormat("en-NG",{maximumFractionDigits:0});
 function money(n){ return "₦"+nf.format(Math.round(n)); }
-function direct(n){ return n*(1-HOTEL.directDiscount); }
 function $(s,r){ return (r||document).querySelector(s); }
-function suiteById(id){ for(var i=0;i<SUITES.length;i++){ if(SUITES[i].id===id) return SUITES[i]; } return SUITES[1]; }
+function aptById(id){ for(var i=0;i<APARTMENTS.length;i++){ if(APARTMENTS[i].id===id) return APARTMENTS[i]; } return APARTMENTS[0]; }
 function iso(d){ var m=d.getMonth()+1,y=d.getDate(); return d.getFullYear()+"-"+(m<10?"0":"")+m+"-"+(y<10?"0":"")+y; }
 function fmtDate(s){ if(!s) return "—"; var p=s.split("-"); return new Date(+p[0],+p[1]-1,+p[2])
   .toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short",year:"numeric"}); }
@@ -91,7 +47,7 @@ var IMAGES = {
   "06":"img/shot-06.jpg", "07":"img/shot-07.jpg", "08":"img/shot-08.jpg", "13":"img/shot-17.jpg",
   "15":"img/shot-07.jpg", "17":"img/shot-17.jpg", "18":"img/shot-18.jpg", "19":"img/shot-07.jpg",
   "24":"img/shot-24.jpg", "31":"img/shot-07.jpg", "33":"img/shot-33.jpg", "40":"img/shot-03.jpg",
-  /* suite bathroom / room-space detail shots */
+  /* apartment bathroom / room-space detail shots */
   "02b":"img/shot-02b.jpg", "02c":"img/shot-02c.jpg",
   "03b":"img/shot-03b.jpg", "03c":"img/shot-03c.jpg",
   "04b":"img/shot-04b.jpg", "04c":"img/shot-04c.jpg",
@@ -127,30 +83,6 @@ function photo(cls,shot,style){
 }
 
 /* ===================== SHARED BLOCKS ===================== */
-/* 02b · short-let features */
-function features(){
-  return '<section class="band band--s1"><div class="wrap">'+
-   '<div class="shead shead--split"><div class="shead__l"><span class="eyebrow">Short-let, done properly</span>'+
-     '<h2 class="dsp d2">Comfort. Style. Convenience.</h2></div>'+
-     '<div class="tags">'+["Business travellers","Couples & getaways","Families & groups"].map(function(t){
-       return '<span class="tag">'+t+'</span>'; }).join("")+'</div></div>'+
-   '<div class="grid3" style="margin-top:clamp(28px,3.4vw,48px)">'+[
-    ["Comfortable bedrooms","Proper mattresses, blackout curtains and air conditioning that keeps up, in every suite."],
-    ["24/7 power supply","Inverter-backed sockets and a generator on standby, so the power never actually goes."],
-    ["Spacious living room","A separate sitting area in the larger suites &mdash; room enough to work, host or just unwind."],
-    ["Secured environment","A gated compound, on-site security around the clock, and a front desk that never closes."],
-    ["Fully equipped kitchen","A kitchenette or full kitchen depending on the suite, stocked and ready for a proper stay."],
-    ["Fast Wi-Fi","Fibre to every room, fast enough to work from without thinking about it."]
-   ].map(function(a,i){ return '<article class="card">'+mark(i)+'<h3 class="dsp d4">'+a[0]+'</h3><p class="small">'+a[1]+'</p></article>'; }).join("")+'</div>'+
-  '</div></section>';
-}
-/* 03 · marquee */
-function marquee(){
-  var row = MARQ.map(function(m){ return '<span class="marq__i">'+m+'</span>'; }).join("");
-  return '<div class="marq" aria-hidden="true"><div class="marq__track">'+row+row+'</div></div>';
-}
-/* 04 · three pillars */
-/* mission · vision · goal — the client's own wording, one source for the hero and the About page */
 var CREED = [
  {n:"01",k:"Our mission",p:[
   "Our mission is to create beautifully considered homes where every guest feels instantly welcomed, deeply at ease, and free to savour the art of living well.",
@@ -207,104 +139,27 @@ function creedAbout(){
         c.p.map(function(t){return '<p>'+t+'</p>';}).join("")+'</article>';
     }).join("")+'</div></div></section>';
 }
-function pillars(){
-  return '<section class="band band--s1"><div class="wrap">'+
-   '<div class="shead shead--split"><div class="shead__l"><span class="eyebrow">What the house does</span>'+
-     '<h2 class="dsp d2">Two things, done completely</h2></div>'+
-     '<p class="body" style="max-width:34ch">Everything else we will happily arrange for you somewhere else in Lagos.</p></div>'+
-   '<div class="pill pill--2">'+
-    '<article><span class="pill__line"></span><h3 class="dsp d3">Fourteen suites</h3>'+
-      '<p class="body">Four layouts across three floors, from a 24 m² Classic to an 88 m² penthouse. Power that never falters, fibre in every room, and breakfast cooked to order inside the rate.</p>'+
-      '<a class="lnk" href="#/suites">Suites &amp; rates</a></article>'+
-    '<article><span class="pill__line"></span><h3 class="dsp d3">One kitchen, two rooms</h3>'+
-      '<p class="body">The Copper Room downstairs for breakfast and dinner, Sabeis Lounge on the roof from four. A short menu that changes with the market rather than with the season.</p>'+
-      '<a class="lnk" href="#/dining">Dining</a></article>'+
-   '</div></div></section>';
-}
-/* 05 · testimonial — one at a time, prev/next — deliberately empty until real guest words exist */
-var QUOTES = [
-  { q:"Booked the Deluxe Suite for a work trip and ended up staying an extra night. Breakfast was ready before I asked for it, the Wi-Fi never dropped once, and the front desk had a driver at the gate ten minutes after a WhatsApp message.", n:"Adaeze O." },
-  { q:"Eight tables on the roof and all of them full by six on a Friday. We came up for one drink and stayed for the pepper soup. Quiet enough to hear each other talk, five minutes off the expressway.", n:"Femi A." },
-  { q:"Compared rates online, booked direct instead, and the ten percent actually showed up on the invoice. Suite matched the photos exactly, and someone called ahead to confirm our airport pickup without being asked.", n:"Kunle B." }
-];
-function quotes(){
-  return '<section class="band"><div class="wrap">'+
-   '<div class="shead"><span class="eyebrow">Client stories</span>'+
-     '<h2 class="dsp d2">In their words</h2></div>'+
-   '<div class="testi" id="testi"><div class="testi__pane" id="testiPane"><div class="testi__fade">'+
-     '<span class="testi__mark" aria-hidden="true">&ldquo;</span>'+
-     '<p class="testi__txt" id="testiTxt">'+QUOTES[0].q+'</p>'+
-     '<div class="testi__rule" id="testiRule" data-fill="1"><span class="testi__fill"></span></div>'+
-     '<div class="testi__row"><div class="testi__by"><b id="testiName">'+QUOTES[0].n+'</b><span class="testi__tag" title="Example quote — not yet a real guest review">*</span></div>'+
-       '<div class="testi__nav">'+
-         '<button class="car__btn" type="button" data-testi="-1" aria-label="Previous review"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>'+
-         '<button class="car__btn" type="button" data-testi="1" aria-label="Next review"><svg class="ic" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>'+
-       '</div></div>'+
-   '</div></div></div>'+
-  '</div></section>';
-}
-/* 06 · five-item carousel — stacked 3D stage with a swapping text pane */
-function carousel(){
-  return '<section class="band band--s1"><div class="wrap">'+
-   '<div class="shead"><span class="eyebrow">Room by room</span>'+
-     '<h2 class="dsp d2 nobreak">Two parts of one building</h2>'+
-     '<p class="body">The suites and the table, inside the same walls, run by the same desk.</p></div>'+
-   '<div class="car" id="car">'+
-     '<div class="car__stage" id="carStage">'+
-       SPACES.map(function(sp,i){
-         return '<div class="car__s" data-i="'+i+'">'+photo(sp.v,sp.shot)+'</div>';
-       }).join("")+
-     '</div>'+
-     '<div class="car__pane" id="carPane">'+
-       '<div class="car__fade" id="carFade">'+
-         '<span class="eyebrow" id="carKicker">'+SPACES[0].k+'</span>'+
-         '<h3 class="dsp d3" id="carTitle" style="margin:10px 0 12px">'+SPACES[0].n+'</h3>'+
-         '<p class="body" id="carCopy">'+SPACES[0].d+'</p>'+
-         '<a class="lnk" id="carGo" href="'+SPACES[0].go+'" style="margin-top:16px">'+SPACES[0].goT+'</a>'+
-       '</div>'+
-       '<div class="car__ctl">'+
-         '<div class="car__dots" id="carDots" role="tablist" aria-label="Spaces">'+
-           SPACES.map(function(sp,i){ return '<button type="button" role="tab" data-go="'+i+'" aria-label="'+sp.n+'"'+(i?'':' aria-current="true"')+'></button>'; }).join("")+
-         '</div>'+
-         '<div style="display:flex;gap:16px;align-items:center">'+
-           '<span class="car__count" id="carCount">01 / 0'+SPACES.length+'</span>'+
-           '<div class="car__btns">'+
-             '<button class="car__btn" type="button" data-car="-1" aria-label="Previous"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>'+
-             '<button class="car__btn" type="button" data-car="1" aria-label="Next"><svg class="ic" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>'+
-           '</div>'+
-         '</div>'+
-       '</div>'+
-     '</div>'+
-   '</div></div></section>';
-}
 /* enquiry */
 function enquiry(){
   return '<section class="band" id="enquire"><div class="wrap enq">'+
    '<div style="display:grid;gap:17px">'+
      '<span class="eyebrow">Send an enquiry</span>'+
      '<h2 class="dsp d2">Ask us anything</h2>'+
-     '<p class="body">Enquiries through here are quoted at the direct rate &mdash; ten percent under the booking sites. One person reads them and replies the same working day.</p>'+
-     '<div class="acts"><a class="btn btn--g" href="tel:+2349160291333">+234 916 029 1333</a>'+
-       '<a class="btn btn--o" id="waEnq" href="#" target="_blank" rel="noopener">WhatsApp instead</a></div>'+
-     '<p class="tiny">Front desk staffed 24 hours. WhatsApp is usually answered inside ten minutes.</p></div>'+
+     '<p class="body">Ask about an apartment, availability or a longer stay. Your message opens in WhatsApp, ready to send.</p>'+
+     '<div class="acts"><a class="btn btn--g" href="tel:+2349160291333">0916 029 1333</a>'+
+       '<a class="btn btn--o" id="waEnq" href="#" target="_blank" rel="noopener">WhatsApp instead</a></div></div>'+
    '<form class="panelform" id="enqForm" novalidate>'+
      '<div class="fld"><label for="qType">What is this about?</label><select id="qType">'+
-       '<option>A room reservation</option><option>A long stay, a week or more</option><option>Airport transfer</option>'+
-       '<option>A table at The Copper Room</option><option>Private hire of the rooftop</option>'+
-       '<option>A meeting or event</option><option>Press or a shoot</option><option>Something else</option></select></div>'+
+       '<option>An apartment booking</option><option>A longer stay</option><option>A question about prices</option><option>Something else</option></select></div>'+
      '<div class="frow"><div class="fld"><label for="qName">Your name</label><input type="text" id="qName" required></div>'+
        '<div class="fld"><label for="qPhone">Phone</label><input type="tel" id="qPhone" placeholder="+234 …" required></div></div>'+
      '<div class="frow"><div class="fld"><label for="qEmail">Email</label><input type="email" id="qEmail" placeholder="you@example.com"></div>'+
        '<div class="fld"><label for="qDate">Date, if you have one</label><input type="date" id="qDate"></div></div>'+
-     '<div class="fld"><label for="qNotes">Your message</label><textarea id="qNotes" placeholder="Dates, numbers, anything unusual…"></textarea></div>'+
+     '<div class="fld"><label for="qNotes">Your message</label><textarea id="qNotes" placeholder="Dates, number of guests, anything we should know…"></textarea></div>'+
      '<label class="consent"><input type="checkbox" id="qConsent" checked><span>I agree that Sabeis Homes may contact me about this enquiry.</span></label>'+
      '<button class="btn btn--p btn--full" type="submit">Send the enquiry</button>'+
      '<p class="status" id="enqStatus" hidden></p></form>'+
   '</div></section>';
-}
-function amenGrid(){
-  return '<div class="grid4">'+AMENITIES.map(function(a,i){
-    return '<article>'+mark(i)+'<h3 class="dsp d4">'+a[0]+'</h3><p class="small">'+a[1]+'</p></article>'; }).join("")+'</div>';
 }
 function pageHero(eye,title,sub,shot,v,tw){
   return '<section class="band" style="padding-top:calc(var(--nav-h) + clamp(44px,7vw,110px))"><div class="wrap">'+
@@ -313,219 +168,114 @@ function pageHero(eye,title,sub,shot,v,tw){
    photo((v||"")+" photo--2",shot,"aspect-ratio:24/9")+
   '</div></section>';
 }
-function roomBlock(s,i){
-  return '<article class="room'+(i%2?" room--flip":"")+'" data-room="'+s.id+'">'+
-   '<div class="room__media">'+photo(s.v,s.shots[0])+photo(s.v,s.shots[1])+photo(s.v,s.shots[2])+'</div>'+
-   '<div class="room__txt">'+
-     '<span class="eyebrow">'+s.tagline+'</span>'+
-     '<h3 class="dsp d2" style="font-size:clamp(1.8rem,3.4vw,2.8rem)">'+s.name+'</h3>'+
-     '<p class="body">'+s.pitch+'</p>'+
-     '<dl class="specs">'+s.specs.map(function(p){ return '<div><dt>'+p[0]+'</dt><dd>'+p[1]+'</dd></div>'; }).join("")+'</dl>'+
-     '<p class="price">'+money(direct(s.rate))+' <s>'+money(s.rate)+'</s>'+
-       '<small>per night, direct rate &middot; breakfast and VAT included</small></p>'+
-     '<div class="room__acts">'+
-       '<button class="btn btn--p btn--sm" type="button" data-book-suite="'+s.id+'">Book now</button>'+
-       '<a class="btn btn--g btn--sm" target="_blank" rel="noopener" href="'+
-         waLink("Hello "+HOTEL.name+", I would like to ask about the "+s.name+".")+'">Ask a question</a></div>'+
-     '<div class="acc"><details><summary>Everything in this suite</summary><div class="accbd"><ul>'+
-       s.amen.map(function(a){ return '<li>'+a+'</li>'; }).join("")+'</ul></div></details></div>'+
-   '</div></article>';
-}
 
 /* ===================== VIEWS ===================== */
 var VIEWS = {};
 
-/* ---------- HOME : reference block order 01–08 ---------- */
+/* ---------- shared pieces for the price list ---------- */
+var ICON_SHIELD='<svg class="cfee__ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 7 10v12c0 11 7 18 17 22 10-4 17-11 17-22V10z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M17 24l5 5 9-10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function aptCard(a){
+  return '<article class="aptc"><span class="aptc__tri" aria-hidden="true"></span>'+
+    '<h3 class="aptc__n">'+a.name+'</h3>'+
+    '<p class="aptc__p">'+money(a.rate)+'<small>per night</small></p>'+
+    '<button class="btn btn--p btn--sm" type="button" data-book-apt="'+a.id+'">Book now</button></article>';
+}
+function cautionStrip(){
+  return '<div class="cfee">'+ICON_SHIELD+
+    '<div class="cfee__t"><span>Fixed caution fee</span><b>'+money(HOTEL.cautionFee)+'</b></div>'+
+    '<p class="cfee__n">Refundable after inspection.</p></div>';
+}
+function contactCards(){
+  var wa="0912 999 2454";
+  return '<div class="grid4">'+[
+   ["Call us",'<a href="tel:+2348069397507">0806 939 7507</a><br><a href="tel:+2349160291333">0916 029 1333</a>',"Reservations and questions"],
+   ["WhatsApp",'<a href="'+waLink("Hello "+HOTEL.name+", I would like to enquire about an apartment.")+'" target="_blank" rel="noopener">'+wa+'</a>',"Message us any time"],
+   ["Email",'<a href="mailto:'+HOTEL.email+'">'+HOTEL.email+'</a>',"We reply to every message"],
+   ["Visit us",'35, Baganju Street, behind Homat School',"Igbogbo, Ikorodu, Lagos State"]
+  ].map(function(c){ return '<article><span class="eyebrow">'+c[0]+'</span>'+
+    '<p class="dsp d4" style="font-size:.98rem;word-break:break-word;line-height:1.5">'+c[1]+'</p>'+
+    '<p class="small">'+c[2]+'</p></article>'; }).join("")+'</div>';
+}
+
+/* ---------- HOME ---------- */
 VIEWS["/"] = function(){ return ''+
-/* 01 · full-bleed motion hero with oversized type */
 '<section class="hero">'+
-  '<div class="hero__bg" role="img" aria-label="Sabeis Homes suite, soft evening light"></div>'+
+  '<div class="hero__bg" role="img" aria-label="Sabeis Homes apartment, soft evening light"></div>'+
   '<div class="hero__in">'+
     '<div class="hero__top">'+
       '<h1 class="dsp d1 rise rise2">Simplicity <em>meets</em> class</h1>'+
       '<div class="hero__acts rise rise4">'+
         '<button class="btn btn--p" type="button" data-open-book>Book now</button>'+
-        '<a class="btn btn--o" href="#/suites">See the suites</a></div>'+
+        '<a class="btn btn--o" href="#/apartments">See the apartments</a></div>'+
     '</div>'+
     creedHero()+
   '</div>'+
   creedPanels()+
 '</section>'+
-/* 02 · four-card showcase grid */
 '<section class="band" style="padding-top:clamp(30px,4vw,48px)"><div class="wrap">'+
-  '<div class="shead shead--split"><div class="shead__l"><span class="eyebrow">The suites</span>'+
-    '<h2 class="dsp d2">Four ways to stay</h2></div>'+
-    '<a class="btn btn--g" href="#/suites">View all four</a></div>'+
-  '<div class="show">'+SUITES.map(function(s){
-    return '<a class="shot" href="#/suites">'+
-      photo("shot__media "+s.v,s.shots[0])+
-      '<div class="shot__bd">'+
-        '<h3 class="dsp d3">'+s.name+'</h3>'+
-        '<div class="shot__row"><span class="shot__meta">'+s.tagline+'</span>'+
-          '<span class="shot__rate">'+money(direct(s.rate))+' <span>per night</span></span></div>'+
-      '</div></a>';
-  }).join("")+'</div>'+
-'</div></section>'+
-/* 02b · short-let features */
-features()+
-/* 03 · marquee */
-marquee()+
-/* 04 · three pillars */
-pillars()+
-/* 05 · quote row */
-quotes()+
-/* 06 · carousel */
-carousel();
-};
-
-/* ---------- SUITES ---------- */
-VIEWS["/suites"] = function(){ return ''+
-pageHero("Suites &amp; rates","Fourteen suites,<br>four layouts,<br>one standard",
-  "Three floors on a quiet street in Igbogbo, Ikorodu. Every rate includes breakfast cooked to order, fibre Wi&#8209;Fi and VAT &mdash; and booked direct, ten percent comes off the top.",
-  "Shot 24 · Stair and landing — wide",undefined,"none")+
-'<section class="band--tight"><div class="wrap"><div class="stats">'+
-  '<div><b class="num">14</b><span>Suites</span></div>'+
-  '<div><b class="num">4</b><span>Layouts</span></div>'+
-  '<div><b class="num">24/7</b><span>Power &amp; front desk</span></div>'+
-  '<div><b class="num">10%</b><span>Off, booked direct</span></div>'+
-'</div></div></section>'+
-marquee()+
-'<section class="band band--s1" id="suiteList"><div class="wrap">'+
-  '<div class="shead shead--split"><div class="shead__l"><span class="eyebrow">Pick your layout</span>'+
-    '<h2 class="dsp d2">The four suites</h2>'+
-    '<p class="body">Seven nights or more takes a further ten percent off. Extra beds are &#8358;12,000 a night in the two largest suites.</p></div>'+
-    '<button class="btn btn--p" type="button" data-open-book>Check availability</button></div>'+
-  '<div class="tabs" id="roomTabs" role="tablist" aria-label="Suite types">'+
-    '<button type="button" role="tab" data-tab="all" aria-selected="true">All four</button>'+
-    SUITES.map(function(s){ return '<button type="button" role="tab" data-tab="'+s.id+'" aria-selected="false">'+s.name+'</button>'; }).join("")+
-  '</div>'+
-  '<div class="rooms" id="roomRows">'+SUITES.map(roomBlock).join("")+'</div>'+
-'</div></section>'+
-'<section class="band"><div class="wrap">'+
-  '<div class="shead"><span class="eyebrow">Included in every rate</span><h2 class="dsp d2">What comes with the room</h2></div>'+
-  amenGrid()+
+  '<div class="shead shead--split"><div class="shead__l"><span class="eyebrow">Apartments &amp; price list</span>'+
+    '<h2 class="dsp d2">Choose your apartment</h2></div>'+
+    '<a class="btn btn--g" href="#/apartments">Full price list</a></div>'+
+  '<div class="aptgrid">'+APARTMENTS.map(aptCard).join("")+'</div>'+
+  cautionStrip()+
 '</div></section>'+
 '<section class="band band--s1"><div class="wrap">'+
-  '<div class="shead"><span class="eyebrow">Good to know</span><h2 class="dsp d2">The practical things</h2></div>'+
-  '<div class="acc" style="max-width:920px">'+FAQ.map(function(f){
-    return '<details><summary>'+f[0]+'</summary><div class="accbd"><p>'+f[1]+'</p></div></details>'; }).join("")+'</div>'+
-'</div></section>'+
-'<section class="band"><div class="wrap">'+
-  '<div class="shead"><span class="eyebrow">The look</span><h2 class="dsp d2">Around the house</h2>'+
-  '<p class="small">Eight square slots, sized and cropped &mdash; your photographer&rsquo;s files drop straight in.</p></div>'+
-  '<div class="gal">'+[["","08 · Reception"],["v2","09 · Bath"],["v3","10 · Desk"],["v4","11 · Corridor"],
-    ["v5","12 · Breakfast"],["v3","13 · Courtyard"],["v2","14 · Bed detail"],["v4","15 · Rooftop"]]
-    .map(function(p){ return photo(p[0],p[1]); }).join("")+'</div>'+
+  '<div class="shead"><span class="eyebrow">Get in touch</span><h2 class="dsp d2">Ready when you are</h2></div>'+
+  contactCards()+
 '</div></section>';
 };
 
-/* ---------- DINING ---------- */
-VIEWS["/dining"] = function(){ return ''+
-pageHero("Food &amp; drink","One kitchen, two very different rooms",
-  "Downstairs is where breakfast happens and dinner is taken seriously. Upstairs is where the day ends. The same kitchen cooks for both, which keeps the menu short and honest.",
-  "Shot 25 · Kitchen pass — wide","v2")+
-marquee()+
-'<section class="band band--s1"><div class="wrap rooms">'+
-  '<article class="room">'+
-    '<div class="room__media">'+photo("v2","Shot 06 · The Copper Room, dinner service")+
-      photo("v2","Shot 06b · Table setting")+photo("v2","Shot 06c · Pepper soup")+'</div>'+
-    '<div class="room__txt">'+
-      '<span class="eyebrow">Daily &middot; 07:00 &ndash; 22:30</span>'+
-      '<h2 class="dsp d2" style="font-size:clamp(1.9rem,3.6vw,3rem)">The Copper Room</h2>'+
-      '<p class="body">Eleven tables under copper pendants. Breakfast is included in every rate and cooked to order &mdash; yam and egg sauce, akara, or a full English if that is your morning. Dinner is nine plates, Nigerian and continental, changed as the market changes. The pepper soup has not come off the list once.</p>'+
-      '<ul class="bullets"><li>Breakfast 07:00&ndash;11:00, included in every rate</li>'+
-        '<li>Lunch and dinner to 22:30, last order 22:00</li>'+
-        '<li>Room service on the same menu until 22:00, no surcharge</li>'+
-        '<li>Walk-ins welcome if you call ahead</li>'+
-        '<li>Allergies and restrictions: tell us when you book</li></ul>'+
-      '<div class="room__acts"><a class="btn btn--p btn--sm" id="waMenu" href="#" target="_blank" rel="noopener">Ask for the menu</a>'+
-        '<a class="btn btn--g btn--sm" href="tel:+2349160291333">Reserve by phone</a></div>'+
-    '</div></article>'+
-  '<article class="room room--flip">'+
-    '<div class="room__media">'+photo("v3","Shot 07 · Rooftop lounge at dusk")+
-      photo("v3","Shot 07b · Bar detail")+photo("v3","Shot 07c · Small chops")+'</div>'+
-    '<div class="room__txt">'+
-      '<span class="eyebrow">Tuesday &ndash; Sunday &middot; 16:00 &ndash; late</span>'+
-      '<h2 class="dsp d2" style="font-size:clamp(1.9rem,3.6vw,3rem)">Sabeis Lounge</h2>'+
-      '<p class="body">Eight tables on the roof and a view across the estate. Cocktails built from whatever the bar has that is actually good, small chops from the kitchen downstairs, and palm wine on Sundays because people kept asking. The light between six and seven is the reason to arrive early.</p>'+
-      '<div class="tags"><span class="tag">Sundown bar</span><span class="tag">Palm wine Sundays</span>'+
-        '<span class="tag">Small chops to 22:00</span><span class="tag">Private hire from 16:00</span></div>'+
-      '<div class="room__acts"><a class="btn btn--p btn--sm" id="waTable" href="#" target="_blank" rel="noopener">Reserve a table</a></div>'+
-    '</div></article>'+
-'</div></section>'+
-'<section class="band"><div class="wrap">'+
-  '<div class="shead"><span class="eyebrow">Also true</span><h2 class="dsp d2">Small things about eating here</h2></div>'+
-  '<div class="grid3">'+[
-   ["Breakfast on your schedule","Seven until eleven downstairs. Tell the desk the night before and it arrives in your suite at the hour you name, at no extra cost."],
-   ["The menu is short on purpose","Nine dinner plates, changed as the market changes. Anything you cannot eat, tell us when you book and the kitchen works around it."],
-   ["Delivery, locally","We send food out within Igbogbo and Ikorodu between noon and nine. Order on WhatsApp and it leaves the kitchen inside forty minutes."]
-  ].map(function(a,i){ return '<article class="card">'+mark(i+3)+'<h3 class="dsp d4">'+a[0]+'</h3><p class="small">'+a[1]+'</p></article>'; }).join("")+'</div>'+
-'</div></section>'+enquiry();
+/* ---------- APARTMENTS ---------- */
+VIEWS["/apartments"] = function(){ return ''+
+pageHero("Apartments &amp; price list","Eight apartments,<br>one clear price list",
+  "Every apartment and its nightly price, with the fixed caution fee, in one place. Pick one and book direct.",
+  "Shot 40 · Apartment interior, wide","v2","none")+
+'<section class="band band--s1"><div class="wrap">'+
+  '<div class="shead"><span class="eyebrow">Price list</span><h2 class="dsp d2">Apartments and prices</h2></div>'+
+  '<div class="plist" role="table" aria-label="Apartment price list">'+
+    '<div class="plist__h" role="row"><span role="columnheader">Apartment name</span><span role="columnheader">Apartment price</span><span></span></div>'+
+    APARTMENTS.map(function(a){
+      return '<div class="plist__r" role="row"><span class="plist__n" role="cell">'+a.name+'</span>'+
+        '<span class="plist__p" role="cell">'+money(a.rate)+'<small>per night</small></span>'+
+        '<span class="plist__a"><button class="btn btn--p btn--sm" type="button" data-book-apt="'+a.id+'">Book now</button></span></div>';
+    }).join("")+
+  '</div>'+
+  cautionStrip()+
+  '<div class="notes">'+
+    '<article class="note"><span class="note__ic" aria-hidden="true">&#8358;</span><div><h3 class="dsp d4">Apartment prices</h3><p class="small">This is the cost of booking or renting the apartment.</p></div></article>'+
+    '<article class="note"><span class="note__ic" aria-hidden="true">i</span><div><h3 class="dsp d4">Note</h3><p class="small">The fixed caution fee is '+money(HOTEL.cautionFee)+', refundable after inspection.</p></div></article>'+
+  '</div>'+
+  '<p class="lede" style="margin-top:clamp(28px,3.4vw,44px);font-style:italic">Thank you for choosing Sabeis Homes Ltd.</p>'+
+'</div></section>';
 };
 
 /* ---------- ABOUT ---------- */
 VIEWS["/about"] = function(){ return ''+
 pageHero("About","Simplicity<br>meets <em style=\"font-style:italic;color:var(--copper-hi)\">class</em>",
-  "Sabeis Homes Ltd was registered to do one thing properly: run a small hotel in Lagos where nothing important is left to chance. The tagline is not marketing &mdash; it was the brief we gave the builders.",
+  "Sabeis Homes Ltd offers short-let apartments in Igbogbo, Ikorodu, Lagos &mdash; peaceful, stylish and convenient places to stay.",
   "Shot 29 · The building, from across the street","v3","none")+
 creedAbout()+
-pillars()+
-'<section class="band"><div class="wrap grid2" style="align-items:center">'+
-  '<div style="display:grid;gap:18px"><span class="eyebrow">How it started</span>'+
-    '<h2 class="dsp d2">A short history</h2>'+
-    '<p class="body">The company was built around a frustration anyone who travels in Nigeria will recognise: the gap between what a hotel promises and what happens at eleven at night when the power goes and nobody answers the phone.</p>'+
-    '<p class="body">So the priorities went in a particular order. Power first, then water, then the bed, then the food, then everything else. Fourteen suites was the largest number we could run without needing a layer of management between the guest and the person who can fix things.</p>'+
-    '<p class="body">Everything since has followed from that. It is why the house is small, why the menu is short, and why the front desk is staffed through the night.</p></div>'+
-  photo("v2 no-arm","Shot 30 · Detail, copper and oak","aspect-ratio:4/5")+
-'</div></section>'+
-'<section class="band band--s1"><div class="wrap">'+
-  '<div class="shead"><span class="eyebrow">What we hold to</span><h2 class="dsp d2">Four house rules</h2></div>'+
-  '<div class="grid4">'+[
-   ["Nothing important is optional","Power, water, Wi-Fi and a clean bed are not amenities to be listed. They are the floor, and the floor never moves."],
-   ["Say the real price","Rates include VAT and breakfast. The figure on the page is the figure on the bill, and the direct rate is always the lowest one."],
-   ["Answer the phone","Somebody picks up, at any hour, and that person can actually decide things."],
-   ["Small on purpose","Fourteen suites is a choice. It is the size at which a house can still be run by people who know your name."]
-  ].map(function(v){ return '<article><h3 class="dsp d4">'+v[0]+'</h3><p class="small">'+v[1]+'</p></article>'; }).join("")+'</div>'+
-'</div></section>'+
 '<section class="band"><div class="wrap">'+
   '<div class="shead"><span class="eyebrow">The company</span><h2 class="dsp d2">On the record</h2></div>'+
   '<div class="grid4">'+[
    ["Registered name","Sabeis Homes Ltd"],["RC number","8982917"],
-   ["Registered address","35, Baganju Street, Igbogbo, Ikorodu, Lagos"],["Reservations","+234 916 029 1333"]
+   ["Address","35, Baganju Street, behind Homat School, Igbogbo, Ikorodu, Lagos State"],["Reservations","0806 939 7507 &middot; 0916 029 1333"]
   ].map(function(v){ return '<article><span class="eyebrow">'+v[0]+'</span><p class="dsp d4">'+v[1]+'</p></article>'; }).join("")+'</div>'+
-'</div></section>'+quotes();
+'</div></section>';
 };
 
 /* ---------- CONTACT ---------- */
 VIEWS["/contact"] = function(){ return ''+
 pageHero("Contact","Come and stay",
-  "The fastest route is WhatsApp and the desk is staffed through the night. Everything below reaches a person, not a queue.",
+  "Call, message us on WhatsApp or send an email. We are happy to help with prices, availability and booking.",
   "Shot 16 · Gate and street entrance — wide","v5","none")+
 '<section class="band"><div class="wrap">'+
-  '<div class="grid4">'+[
-   ["Reservations","+234 916 029 1333","tel:+2349160291333","Also on +234 806 939 7507"],
-   ["Sabeis Homes email","sabeishomes@gmail.com","mailto:sabeishomes@gmail.com","Answered within the day"],
-   ["Dining","sabeishomes@gmail.com","mailto:sabeishomes@gmail.com","The Copper Room and room service"],
-   ["Events","sabeishomes@gmail.com","mailto:sabeishomes@gmail.com","Straight to the coordinator"]
-  ].map(function(c){ return '<article><span class="eyebrow">'+c[0]+'</span>'+
-    '<p class="dsp d4" style="font-size:.98rem;word-break:break-word"><a href="'+c[2]+'">'+c[1]+'</a></p>'+
-    '<p class="small">'+c[3]+'</p></article>'; }).join("")+'</div>'+
-  '<div class="grid2" style="margin-top:clamp(28px,3.4vw,48px);align-items:start">'+
-    '<div style="display:grid;gap:16px">'+
-      '<h3 class="dsp d3">35, Baganju Street</h3>'+
-      '<p class="body">Behind Homat School, Igbogbo, Ikorodu, Lagos State. Sabeis Homes Ltd, RC 8982917. Arrival from 14:00, departure by 12:00 &mdash; bags held free either side.</p>'+
-      '<p class="small">About 75&ndash;110 minutes from Murtala Muhammed International depending on traffic. A car meets you at arrivals &mdash; send your flight number when you book and we confirm the fare with you first.</p>'+
-      '<div class="acts"><a class="btn btn--g" href="https://www.google.com/maps/search/?api=1&amp;query=35+Baganju+Street+Igbogbo+Ikorodu+Lagos" target="_blank" rel="noopener">Open in Maps</a>'+
-        '<button class="btn btn--p" type="button" data-open-book>Book a suite</button></div>'+
-    '</div>'+
-    '<div><h3 class="dsp d3" style="margin-bottom:18px">Opening hours</h3>'+
-      '<div class="acc">'+[
-       ["Front desk","Open 24 hours, every day of the year. Somebody is always on the desk, and that person can make decisions."],
-       ["Breakfast · 07:00 – 11:00","In The Copper Room, cooked to order and included in every rate. In-suite at the hour you name, at no extra cost, if you tell the desk the night before."],
-       ["The Copper Room · 07:00 – 22:30","Lunch and dinner daily, last order at 22:00. Walk-ins welcome if you call ahead. Room service runs the same menu until 22:00."],
-       ["Sabeis Lounge · Tue – Sun, 16:00 – late","The rooftop bar. Guests need no reservation; walk-ins should call. Private hire from 16:00 any day."],
-       ["Events · by arrangement","Courtyard, boardroom and rooftop are booked through the coordinator, who normally comes back to you the same working day."]
-      ].map(function(h){ return '<details><summary>'+h[0]+'</summary><div class="accbd"><p>'+h[1]+'</p></div></details>'; }).join("")+'</div></div>'+
+  contactCards()+
+  '<div style="display:grid;gap:16px;margin-top:clamp(28px,3.4vw,48px);max-width:62ch">'+
+    '<h3 class="dsp d3">35, Baganju Street</h3>'+
+    '<p class="body">Behind Homat School, Igbogbo, Ikorodu, Lagos State. Sabeis Homes Ltd, RC 8982917.</p>'+
+    '<div class="acts"><a class="btn btn--g" href="https://www.google.com/maps/search/?api=1&amp;query=35+Baganju+Street+Igbogbo+Ikorodu+Lagos" target="_blank" rel="noopener">Open in Maps</a>'+
+      '<button class="btn btn--p" type="button" data-open-book>Book an apartment</button></div>'+
   '</div>'+
 '</div></section>'+enquiry()+
 '<section class="band band--s1"><div class="wrap">'+
@@ -537,22 +287,20 @@ pageHero("Contact","Come and stay",
 
 /* ===================== BOOKING ===================== */
 function updateTotal(){
-  var s=suiteById($("#bSuite").value), n=nights($("#bIn").value,$("#bOut").value);
-  var full=s.rate*n, disc=direct(s.rate)*n;
-  $("#totalLabel").innerHTML=(n||0)+" night"+(n===1?"":"s")+" &middot; "+s.name;
-  $("#totalAmt").textContent=money(disc);
-  $("#depositAmt").textContent=money(direct(s.rate));
-  $("#saveLine").innerHTML = n ? "Direct rate applied &mdash; you save "+money(full-disc)+"." : "Pick your dates to see the total.";
+  var a=aptById($("#bApt").value), n=nights($("#bIn").value,$("#bOut").value), rent=a.rate*n;
+  $("#totalLabel").innerHTML=(n||0)+" night"+(n===1?"":"s")+" &middot; "+a.name;
+  $("#totalAmt").textContent=money(rent);
+  $("#saveLine").innerHTML = n ? "Plus the fixed "+money(HOTEL.cautionFee)+" caution fee, refundable after inspection &mdash; "+money(rent+HOTEL.cautionFee)+" in total." : "Pick your dates to see the total.";
 }
 function collect(){
-  var s=suiteById($("#bSuite").value), n=nights($("#bIn").value,$("#bOut").value);
-  return { suite:s, n:n, rate:direct(s.rate), total:direct(s.rate)*n,
+  var a=aptById($("#bApt").value), n=nights($("#bIn").value,$("#bOut").value);
+  return { apt:a, n:n, rate:a.rate, total:a.rate*n,
     inD:$("#bIn").value, outD:$("#bOut").value, guests:$("#bGuests").value,
     name:$("#bName").value.trim(), phone:$("#bPhone").value.trim(),
     email:$("#bEmail").value.trim(), notes:$("#bNotes").value.trim(), consent:$("#bConsent").checked };
 }
 function validate(r){
-  if(!r.name) return "Please add the name the suite should be held under.";
+  if(!r.name) return "Please add the name the apartment should be held under.";
   if(!r.phone) return "Please add a phone number so we can confirm.";
   if(r.n<1) return "Departure needs to be at least one night after arrival.";
   if(!r.consent) return "Please tick the box so we may reply to you.";
@@ -560,9 +308,11 @@ function validate(r){
 }
 function messageFor(r){
   return ["RESERVATION REQUEST — "+HOTEL.name,"",
-    "Suite: "+r.suite.name,"Direct rate: "+money(r.rate)+" per night",
+    "Apartment: "+r.apt.name,"Price: "+money(r.rate)+" per night",
     "Arrival: "+fmtDate(r.inD),"Departure: "+fmtDate(r.outD),
-    "Nights: "+r.n,"Guests: "+r.guests,"Total: "+money(r.total),"",
+    "Nights: "+r.n,"Guests: "+r.guests,"Rent: "+money(r.total),
+    "Caution fee (refundable after inspection): "+money(HOTEL.cautionFee),
+    "Total with caution fee: "+money(r.total+HOTEL.cautionFee),"",
     "Name: "+r.name,"Phone: "+r.phone,
     r.email?"Email: "+r.email:"", r.notes?"Notes: "+r.notes:""].filter(Boolean).join("\n");
 }
@@ -570,7 +320,7 @@ function say(sel,msg,kind){ var el=$(sel); if(!el) return; el.textContent=msg; e
 
 var lastFocus=null;
 function openBook(id){
-  if(id){ $("#bSuite").value=id; updateTotal(); }
+  if(id){ $("#bApt").value=id; updateTotal(); }
   lastFocus=document.activeElement;
   $("#panel").setAttribute("data-open","true"); $("#panel").setAttribute("aria-hidden","false");
   $("#scrim").setAttribute("data-open","true");
@@ -584,7 +334,7 @@ function closeBook(){
   if(lastFocus && lastFocus.focus) lastFocus.focus();
 }
 function saveDraft(){
-  try{ localStorage.setItem("sbh-draft",JSON.stringify({suite:$("#bSuite").value,guests:$("#bGuests").value,
+  try{ localStorage.setItem("sbh-draft",JSON.stringify({apt:$("#bApt").value,guests:$("#bGuests").value,
     name:$("#bName").value,phone:$("#bPhone").value,email:$("#bEmail").value,notes:$("#bNotes").value})); }catch(e){}
 }
 function loadDraft(){
@@ -593,7 +343,7 @@ function loadDraft(){
     var d=JSON.parse(raw);
     if(d.name)$("#bName").value=d.name; if(d.phone)$("#bPhone").value=d.phone;
     if(d.email)$("#bEmail").value=d.email; if(d.notes)$("#bNotes").value=d.notes;
-    if(d.guests)$("#bGuests").value=d.guests; if(d.suite)$("#bSuite").value=d.suite;
+    if(d.guests)$("#bGuests").value=d.guests; if(d.apt)$("#bApt").value=d.apt;
     updateTotal();
   }catch(e){}
 }
@@ -678,7 +428,7 @@ function motion(){
   });
 
   /* --- 2 · blocks that fade up --- */
-  var rows = view.querySelectorAll(".shot, .pill article, .grid4 article, .testi, .card, .stats, .specs, .acc, .tags, .bullets, .numlist, .lede, .hero__acts, .hero__creed, .vcard__c, .hero__foot, .car__pane, .shead p, .eyebrow");
+  var rows = view.querySelectorAll(".shot, .pill article, .grid4 article, .testi, .card, .stats, .specs, .acc, .tags, .bullets, .numlist, .lede, .hero__acts, .hero__creed, .vcard__c, .aptc, .plist__r, .cfee, .note, .hero__foot, .car__pane, .shead p, .eyebrow");
   [].slice.call(rows).forEach(function(el,i){
     el.classList.add("up","is-armed");
     el.style.transitionDelay = ((i % 4) * 0.07) + "s";
@@ -711,7 +461,7 @@ function motion(){
   }, { rootMargin:"0px 0px -8% 0px", threshold:0.02 });
 
   /* IntersectionObserver misses a release for some clip-path-hidden elements inside CSS grid
-     rows (a Chromium quirk, seen on the homepage suite cards and elsewhere) — armedWatch is a
+     rows (a Chromium quirk, seen on the homepage apartment cards and elsewhere) — armedWatch is a
      scroll-driven safety net (see checkArmed) that force-releases anything left stuck. */
   armedWatch = [].slice.call(view.querySelectorAll(".ln.is-armed, .up.is-armed, .photo.is-armed, .pill__line.is-armed"));
   armedWatch.forEach(function(el){
@@ -773,6 +523,7 @@ function navScroll(){
 /* ===================== ROUTER ===================== */
 function route(){
   var path=(location.hash||"#/").replace(/^#/,"").split("#")[0];
+  if(path==="/suites") path="/apartments";   /* old links */
   if(!VIEWS[path]) path="/";
   document.getElementById("nav").setAttribute("data-home", String(path==="/"));
   $("#view").innerHTML=VIEWS[path]();
@@ -827,10 +578,10 @@ function wireView(){
       $("#qEmail").value.trim()?"Email: "+$("#qEmail").value.trim():"",
       $("#qNotes").value.trim()?"Message: "+$("#qNotes").value.trim():""].filter(Boolean).join("\n");
     window.open(waLink(msg),"_blank","noopener");
-    say("#enqStatus","Opening WhatsApp with your enquiry — send it and we reply the same working day, at the direct rate.","ok");
+    say("#enqStatus","Opening WhatsApp with your enquiry — send it and we will reply to you.","ok");
   });
 
-  /* suite tabs */
+  /* apartment tabs */
   var tabs=$("#roomTabs");
   if(tabs) tabs.addEventListener("click",function(e){
     var b=e.target.closest("button[data-tab]"); if(!b) return;
@@ -934,9 +685,9 @@ function wireView(){
   $("#waFoot").href=waLink(greeting);
   $("#waDock").href=waLink(greeting);
 
-  $("#bSuite").innerHTML=SUITES.map(function(s){
-    return '<option value="'+s.id+'">'+s.name+' — '+money(direct(s.rate))+'</option>'; }).join("");
-  $("#bSuite").value="deluxe";
+  $("#bApt").innerHTML=APARTMENTS.map(function(a){
+    return '<option value="'+a.id+'">'+a.name+' — '+money(a.rate)+'</option>'; }).join("");
+  $("#bApt").value="divine";
 
   var today=new Date(); today.setHours(0,0,0,0);
   var tmr=new Date(today.getTime()+86400000), d3=new Date(today.getTime()+3*86400000);
@@ -949,7 +700,7 @@ function wireView(){
     if(nights($("#bIn").value,$("#bOut").value)<1) $("#bOut").value=iso(next);
     updateTotal(); saveDraft();
   });
-  ["#bOut","#bSuite","#bGuests"].forEach(function(s){ $(s).addEventListener("change",function(){ updateTotal(); saveDraft(); }); });
+  ["#bOut","#bApt","#bGuests"].forEach(function(s){ $(s).addEventListener("change",function(){ updateTotal(); saveDraft(); }); });
   ["#bName","#bPhone","#bEmail","#bNotes"].forEach(function(s){ $(s).addEventListener("input",saveDraft); });
   updateTotal(); loadDraft();
 
@@ -960,8 +711,8 @@ function wireView(){
     if(m||x){ creedToggle(m?+m.getAttribute("data-creed"):-1); return; }
     var o=e.target.closest("[data-open-book]");
     if(o){ e.preventDefault(); openBook(); return; }
-    var s=e.target.closest("[data-book-suite]");
-    if(s){ e.preventDefault(); e.stopPropagation(); openBook(s.getAttribute("data-book-suite")); return; }
+    var s=e.target.closest("[data-book-apt]");
+    if(s){ e.preventDefault(); e.stopPropagation(); openBook(s.getAttribute("data-book-apt")); return; }
   });
   $("#panelX").addEventListener("click",closeBook);
   $("#scrim").addEventListener("click",closeBook);
@@ -984,31 +735,9 @@ function wireView(){
   });
   $("#sendMail").addEventListener("click",function(){
     var r=collect(), err=validate(r); if(err) return say("#status",err,"err");
-    window.location.href="mailto:"+HOTEL.email+"?subject="+encodeURIComponent("Reservation request — "+r.suite.name+" — "+fmtDate(r.inD))+
+    window.location.href="mailto:"+HOTEL.email+"?subject="+encodeURIComponent("Reservation request — "+r.apt.name+" — "+fmtDate(r.inD))+
       "&body="+encodeURIComponent(messageFor(r));
     say("#status","Your mail app should open with the request filled in.","ok");
   });
-  $("#payNow").addEventListener("click",function(){
-    var r=collect(), err=validate(r); if(err) return say("#status",err,"err");
-    if(!r.email) return say("#status","A card payment needs an email address for the receipt.","err");
-    if(window.PaystackPop && HOTEL.paystackKey){
-      try{
-        window.PaystackPop.setup({
-          key:HOTEL.paystackKey, email:r.email, amount:Math.round(r.rate*100), currency:"NGN",
-          ref:"SBH-"+Date.now(),
-          metadata:{custom_fields:[
-            {display_name:"Guest",variable_name:"guest",value:r.name},
-            {display_name:"Phone",variable_name:"phone",value:r.phone},
-            {display_name:"Suite",variable_name:"suite",value:r.suite.name},
-            {display_name:"Stay",variable_name:"stay",value:fmtDate(r.inD)+" → "+fmtDate(r.outD)}]},
-          callback:function(res){ say("#status","Deposit received. Reference "+res.reference+". Your suite is held — we will see you on "+fmtDate(r.inD)+".","ok"); },
-          onClose:function(){ say("#status","The payment window closed, so nothing was sent.","err"); }
-        }).openIframe();
-        return;
-      }catch(e){}
-    }
-    say("#status","Card payment is not switched on yet — it needs the Paystack key and script on your own domain. Send the request by WhatsApp and we will share a payment link.","err");
-  });
-
   route();
 })();
