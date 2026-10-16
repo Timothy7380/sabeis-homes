@@ -13,14 +13,14 @@ var NAV = [
 
 /* the price list, exactly as published — price is per night */
 var APARTMENTS = [
-  { id:"divine",   name:"Divine",    rate:73500 },
-  { id:"heritage", name:"Heritage",  rate:73500 },
-  { id:"electrum", name:"Electrum",  rate:73500 },
-  { id:"sunset",   name:"Sunset",    rate:73500 },
-  { id:"love",     name:"Love",      rate:84000 },
-  { id:"square",   name:"Square",    rate:84000 },
-  { id:"apex",     name:"Apex",      rate:105000 },
-  { id:"cityview", name:"City View", rate:126000 }
+  { id:"divine",   name:"Divine",    rate:73500, shot:"Shot 02" },
+  { id:"heritage", name:"Heritage",  rate:73500, shot:"Shot 03" },
+  { id:"electrum", name:"Electrum",  rate:73500, shot:"Shot 05b" },
+  { id:"sunset",   name:"Sunset",    rate:73500, shot:"Shot 04" },
+  { id:"love",     name:"Love",      rate:84000, shot:"Shot 05" },
+  { id:"square",   name:"Square",    rate:84000, shot:"Shot 03c" },
+  { id:"apex",     name:"Apex",      rate:105000, shot:"Shot 05c" },
+  { id:"cityview", name:"City View", rate:126000, shot:"Shot 04b" }
 ];
 
 var FAQ = [
@@ -214,9 +214,15 @@ VIEWS["/"] = function(){ return ''+
 '</section>'+
 '<section class="band" style="padding-top:clamp(30px,4vw,48px)"><div class="wrap">'+
   '<div class="shead shead--split"><div class="shead__l"><span class="eyebrow">Apartments &amp; price list</span>'+
-    '<h2 class="dsp d2">Choose your apartment</h2></div>'+
+    '<h2 class="dsp d2">Eight ways to stay</h2></div>'+
     '<a class="btn btn--g" href="#/apartments">Full price list</a></div>'+
-  '<div class="aptgrid">'+APARTMENTS.map(aptCard).join("")+'</div>'+
+  '<div class="show">'+APARTMENTS.map(function(a,i){
+    return '<a class="shot" href="#/apartments" data-book-apt="'+a.id+'">'+photo("shot__media",a.shot)+
+      '<div class="shot__bd"><h3 class="dsp d3">'+a.name+'</h3>'+
+        '<div class="shot__row"><span class="shot__meta">Apartment 0'+(i+1)+' &middot; Book now</span>'+
+          '<span class="shot__rate">'+money(a.rate)+' <span>per night</span></span></div>'+
+      '</div></a>';
+  }).join("")+'</div>'+
   cautionStrip()+
 '</div></section>'+
 '<section class="band band--s1"><div class="wrap">'+
