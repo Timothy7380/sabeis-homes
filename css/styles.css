@@ -18,3 +18,11 @@
 .hero__vid{object-position:58% 0!important}
 .hero .d1{max-width:11ch}
 @media (max-width:760px){.hero__vid{object-position:36% 0!important}}
+
+/* hero headline: no clipped boxes, full descenders/ascenders */
+.hero .d1 .ln{overflow:visible;padding-bottom:0}
+.hero .d1 .ln.is-armed>span,.hero .d1 .ln>span{transform:none!important}
+.hero .d1{padding-left:.06em;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.hero .d1 em{text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.hero__bg::after{background:linear-gradient(90deg,rgba(14,11,8,.5) 0%,rgba(14,11,8,.22) 45%,rgba(14,11,8,0) 75%),linear-gradient(180deg,rgba(20,16,12,0) 0%,rgba(20,16,12,.05) 35%,rgba(18,14,10,.45) 80%,rgba(14,11,8,.75) 100%)!important}
+@media (max-width:760px){.hero__bg::after{background:linear-gradient(180deg,rgba(14,11,8,.35) 0%,rgba(14,11,8,.42) 45%,rgba(14,11,8,.6) 80%,rgba(14,11,8,.8) 100%)!important}}
