@@ -4,3 +4,8 @@
 .mos{grid-auto-flow:dense}
 .mos__i--10,.mos__i--13,.mos__i--14{grid-column:span 2}
 @media (max-width:760px){.mos__i--10,.mos__i--14{grid-column:span 2}.mos__i--13{grid-column:span 1}}
+
+/* gallery: show 9, rest behind "See more" */
+.mos__more{display:none!important}.mos.is-open .mos__more{display:block!important}
+.mos__foot{display:flex;justify-content:center;margin-top:clamp(18px,2.2vw,30px)}
+@media (max-width:760px){.mos__i--9,.mos__i--13{grid-column:span 2}}
