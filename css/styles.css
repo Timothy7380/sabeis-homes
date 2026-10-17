@@ -13,3 +13,8 @@
 /* hero photo starts below the header so the rooftop, logo and sky are never hidden */
 .hero{background:#15130F}
 .hero__bg{top:var(--nav-h)}
+
+/* hero: anchor photo to its top (sky + emblem), keep headline on the left so it never covers the emblem */
+.hero__vid{object-position:58% 0!important}
+.hero .d1{max-width:11ch}
+@media (max-width:760px){.hero__vid{object-position:36% 0!important}}
