@@ -56,3 +56,23 @@
 @media (max-width:1000px){.rules{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.rules__agree{grid-column:auto}}
 @media (max-width:640px){.rules{grid-template-columns:1fr}}
+/* payment details */
+.pay{margin-top:clamp(28px,3.4vw,44px);padding:clamp(22px,2.6vw,36px);border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px -30px rgba(40,28,16,.3);display:grid;gap:clamp(16px,1.8vw,22px)}
+.pay__hd{display:grid;gap:8px}
+.pay__list{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.2vw,16px)}
+.pay__acct{display:grid;gap:6px;padding:clamp(16px,1.6vw,20px);border-radius:12px;background:var(--cream-2);border:1px solid var(--line-2)}
+.pay__bank{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--copper)}
+.pay__row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pay__num{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(1.35rem,2vw,1.7rem);font-weight:700;letter-spacing:.02em;color:var(--ink)}
+.pay__name{font-size:.92rem;font-weight:600;color:var(--ink-2)}
+.pay__copy{border:1px solid var(--copper);background:transparent;color:var(--copper);border-radius:999px;padding:6px 14px;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+.pay__copy:hover{background:var(--copper);color:#fff}
+.pay__note{margin:0;padding:14px 16px;border-radius:10px;background:var(--copper-wash);border:1px solid var(--sand-2);color:var(--copper-deep);font-size:.92rem;line-height:1.6}
+.pay__note a{color:var(--copper-deep);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.pay__h{margin:4px 0 -4px;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim-2)}
+#payPanel{display:grid;gap:12px}
+#payPanel .pay__list{grid-template-columns:1fr}
+#payPanel .pay__acct{background:#fff}
+#payPanel .pay__num{font-size:1.3rem}
+#payPanel .pay__note{font-size:.86rem}
+@media (max-width:700px){.pay__list{grid-template-columns:1fr}}
